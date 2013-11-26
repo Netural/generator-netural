@@ -20,7 +20,7 @@ NeturalGenerator.prototype.askFor = function askFor() {
     var cb = this.async();
 
     // have Yeoman greet the user.
-    console.log(this.yeoman);
+    console.log("Netural Frontend project generator");
 
     var prompts = [{
         name: 'projectName',
@@ -52,7 +52,7 @@ NeturalGenerator.prototype.projectfiles = function projectfiles() {
 
 NeturalGenerator.prototype.setupScripts = function setupScripts() {
     this.mkdir('app/scripts');
-    this.copy('main.js', 'main.js')
+    this.copy('main.js', 'app/main.js')
 };
 
 NeturalGenerator.prototype.setupStyles = function setupStyles() {
@@ -72,7 +72,7 @@ NeturalGenerator.prototype.setupTemplates = function setupTemplates() {
 
     this.template('layout.hbs','app/templates/layouts/layout.hbs');
     this.template('index.hbs','app/templates/pages/index.hbs');
-    this.template('scripts.hbs','app/templates/pages/scripts.hbs');
+    this.template('scripts.hbs','app/templates/partials/scripts.hbs');
 };
 
 NeturalGenerator.prototype.setupDirectories = function setupDirectories() {

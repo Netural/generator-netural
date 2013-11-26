@@ -179,7 +179,8 @@ module.exports = function (grunt) {
         'bower-install': {
             app: {
                 html: '<%= yeoman.app %>/templates/partials/scripts.hbs',
-                ignorePath: '<%= yeoman.app %>/'
+                ignorePath: '<%= yeoman.app %>/',
+                exclude: ['bower_components/modernizr/modernizr.js']
             }
         },
         useminPrepare: {

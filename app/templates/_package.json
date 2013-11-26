@@ -1,5 +1,5 @@
 {
-  "name": "<%= projectName %>",
+  "name": "<%= _.slugify(projectName) %>",
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
