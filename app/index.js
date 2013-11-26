@@ -47,9 +47,24 @@ NeturalGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('bowerrc', '.bowerrc');
 };
 
-NeturalGenerator.prototype.setupDirectories = function setupDirectories() {
+NeturalGenerator.prototype.setupStyles = function setupStyles() {
+    this.mkdir('app/styles');
+    this.mkdir('app/styles/base');
+    this.mkdir('app/styles/layout');
+    this.mkdir('app/styles/modules');
+    this.mkdir('app/styles/states');
+};
+
+
+NeturalGenerator.prototype.setupTemplates = function setupTemplates() {
     this.mkdir('app/templates');
     this.mkdir('app/templates/layouts');
     this.mkdir('app/templates/pages');
     this.mkdir('app/templates/partials');
+};
+
+NeturalGenerator.prototype.setupDirectories = function setupDirectories() {
+    this.mkdir('app/images');
+    this.mkdir('app/scripts');
+    this.mkdir('app/fonts');
 };

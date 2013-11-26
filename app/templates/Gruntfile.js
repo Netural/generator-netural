@@ -6,6 +6,8 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
 
+    grunt.loadNpmTasks('assemble');
+
     grunt.initConfig({
         // configurable paths
         yeoman: {
@@ -21,6 +23,12 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
                 tasks: ['copy:styles', 'autoprefixer']
             },
+            assemble: {
+                files: ['<%= yeoman.app %>/templates/layouts/*.hbs',
+                       '<%= yeoman.app %>/templates/pages/*.hbs',
+                       '<%= yeoman.app %>/templates/partials/*.hbs'],
+                tasks: ['assemble:server']
+            },
             livereload: {
                 options: {
                     livereload: '<%= connect.options.livereload %>'
@@ -31,6 +39,25 @@ module.exports = function (grunt) {
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'
                 ]
+            }
+        },
+        assemble: {
+            options: {
+                flatten: true,
+                layout: 'layout.hbs',
+                layoutdir: '<%= yeoman.app %>/templates/layouts',
+                assets: 'dist/images',
+                partials: ['<%= yeoman.app %>/templates/partials/*.hbs']
+            },
+            dist: {
+                files: {
+                    '<%= yeoman.dist %>/': ['<%= yeoman.app %>/templates/pages/*.hbs']
+                }
+            },
+            server: {
+                files: {
+                    '.tmp/': ['<%= yeoman.app %>/templates/pages/*.hbs']
+                }
             }
         },
         connect: {
@@ -274,7 +301,8 @@ module.exports = function (grunt) {
         concurrent: {
             server: [
                 'compass',
-                'copy:styles'
+                'copy:styles',
+                'assemble'
             ],
             test: [
                 'copy:styles'
@@ -282,6 +310,7 @@ module.exports = function (grunt) {
             dist: [
                 'compass',
                 'copy:styles',
+                'assemble',
                 'imagemin',
                 'svgmin',
                 'htmlmin'
@@ -318,8 +347,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
-        'useminPrepare',
         'concurrent:dist',
+        'useminPrepare',
         'autoprefixer',
         'concat',
         'cssmin',
