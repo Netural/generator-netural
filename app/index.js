@@ -17,34 +17,35 @@ var NeturalGenerator = module.exports = function NeturalGenerator(args, options,
 util.inherits(NeturalGenerator, yeoman.generators.Base);
 
 NeturalGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
+    var cb = this.async();
 
-  // have Yeoman greet the user.
-  console.log(this.yeoman);
+    // have Yeoman greet the user.
+    console.log(this.yeoman);
 
-  var prompts = [{
-    name: 'projectName',
-    message: 'The name of your project'
-  }];
+    var prompts = [{
+        name: 'projectName',
+        message: 'The name of your project'
+    }];
 
-  this.prompt(prompts, function (props) {
-    this.projectName = props.projectName;
+    this.prompt(prompts, function (props) {
+        this.projectName = props.projectName;
 
-    cb();
-  }.bind(this));
+        cb();
+    }.bind(this));
 };
 
 NeturalGenerator.prototype.app = function app() {
-  this.mkdir('app');
+    this.mkdir('app');
 
-  this.template('_package.json', 'package.json');
-  this.template('_bower.json', 'bower.json');
+    this.template('_package.json', 'package.json');
+    this.template('_bower.json', 'bower.json');
 };
 
 NeturalGenerator.prototype.projectfiles = function projectfiles() {
-  this.copy('editorconfig', '.editorconfig');
-  this.copy('jshintrc', '.jshintrc');
-  this.copy('bowerrc', '.bowerrc');
+    this.copy('editorconfig', '.editorconfig');
+    this.copy('jshintrc', '.jshintrc');
+    this.copy('bowerrc', '.bowerrc');
+    this.copy('Gruntfile.js', 'Gruntfile.js');
 };
 
 NeturalGenerator.prototype.setupStyles = function setupStyles() {
@@ -61,6 +62,8 @@ NeturalGenerator.prototype.setupTemplates = function setupTemplates() {
     this.mkdir('app/templates/layouts');
     this.mkdir('app/templates/pages');
     this.mkdir('app/templates/partials');
+
+    this.template('layout.hbs','app/templates/layouts/layout.hbs');
 };
 
 NeturalGenerator.prototype.setupDirectories = function setupDirectories() {
