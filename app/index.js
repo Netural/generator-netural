@@ -52,7 +52,7 @@ NeturalGenerator.prototype.projectfiles = function projectfiles() {
 
 NeturalGenerator.prototype.setupScripts = function setupScripts() {
     this.mkdir('app/scripts');
-    this.copy('main.js', 'app/main.js')
+    this.copy('main.js', 'app/scripts/main.js')
 };
 
 NeturalGenerator.prototype.setupStyles = function setupStyles() {
