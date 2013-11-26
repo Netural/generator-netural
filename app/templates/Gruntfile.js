@@ -178,20 +178,8 @@ module.exports = function (grunt) {
         },*/
         'bower-install': {
             app: {
-                html: '<%= yeoman.app %>/index.html',
+                html: '<%= yeoman.app %>/templates/partials/scripts.hbs',
                 ignorePath: '<%= yeoman.app %>/'
-            }
-        },
-        rev: {
-            dist: {
-                files: {
-                    src: [
-                        '<%= yeoman.dist %>/scripts/{,*/}*.js',
-                        '<%= yeoman.dist %>/styles/{,*/}*.css',
-                        '<%= yeoman.dist %>/images/{,*/}*.{gif,jpeg,jpg,png,webp}',
-                        '<%= yeoman.dist %>/styles/fonts/{,*/}*.*'
-                    ]
-                }
             }
         },
         useminPrepare: {
@@ -355,7 +343,6 @@ module.exports = function (grunt) {
         'uglify',
         'modernizr',
         'copy:dist',
-        'rev',
         'usemin'
     ]);
 
