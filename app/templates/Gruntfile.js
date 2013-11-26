@@ -180,7 +180,7 @@ module.exports = function (grunt) {
             app: {
                 html: '<%= yeoman.app %>/templates/partials/scripts.hbs',
                 ignorePath: '<%= yeoman.app %>/',
-                exclude: ['bower_components/modernizr/modernizr.js']
+                exclude: ['<%= yeoman.app %>/bower_components/modernizr/modernizr.js']
             }
         },
         useminPrepare: {
