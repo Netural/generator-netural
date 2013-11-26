@@ -302,7 +302,7 @@ module.exports = function (grunt) {
             server: [
                 'compass',
                 'copy:styles',
-                'assemble'
+                'assemble:server'
             ],
             test: [
                 'copy:styles'
@@ -310,7 +310,7 @@ module.exports = function (grunt) {
             dist: [
                 'compass',
                 'copy:styles',
-                'assemble',
+                'assemble:dist',
                 'imagemin',
                 'svgmin',
                 'htmlmin'

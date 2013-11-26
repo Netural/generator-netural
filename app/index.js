@@ -45,6 +45,7 @@ NeturalGenerator.prototype.projectfiles = function projectfiles() {
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
     this.copy('bowerrc', '.bowerrc');
+    this.copy('gitignore', '.gitignore');
     this.copy('Gruntfile.js', 'Gruntfile.js');
 };
 
@@ -64,6 +65,7 @@ NeturalGenerator.prototype.setupTemplates = function setupTemplates() {
     this.mkdir('app/templates/partials');
 
     this.template('layout.hbs','app/templates/layouts/layout.hbs');
+    this.template('index.hbs','app/templates/pages/index.hbs');
 };
 
 NeturalGenerator.prototype.setupDirectories = function setupDirectories() {
