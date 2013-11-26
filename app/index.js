@@ -23,14 +23,12 @@ NeturalGenerator.prototype.askFor = function askFor() {
   console.log(this.yeoman);
 
   var prompts = [{
-    type: 'confirm',
-    name: 'someOption',
-    message: 'Would you like to enable this option?',
-    default: true
+    name: 'projectName',
+    message: 'The name of your project'
   }];
 
   this.prompt(prompts, function (props) {
-    this.someOption = props.someOption;
+    this.projectName = props.projectName;
 
     cb();
   }.bind(this));
@@ -38,13 +36,20 @@ NeturalGenerator.prototype.askFor = function askFor() {
 
 NeturalGenerator.prototype.app = function app() {
   this.mkdir('app');
-  this.mkdir('app/templates');
 
-  this.copy('_package.json', 'package.json');
-  this.copy('_bower.json', 'bower.json');
+  this.template('_package.json', 'package.json');
+  this.template('_bower.json', 'bower.json');
 };
 
 NeturalGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
+  this.copy('bowerrc', '.bowerrc');
+};
+
+NeturalGenerator.prototype.setupDirectories = function setupDirectories() {
+    this.mkdir('app/templates');
+    this.mkdir('app/templates/layouts');
+    this.mkdir('app/templates/pages');
+    this.mkdir('app/templates/partials');
 };
