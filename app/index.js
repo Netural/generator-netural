@@ -5,13 +5,15 @@ var yeoman = require('yeoman-generator');
 
 
 var NeturalGenerator = module.exports = function NeturalGenerator(args, options, config) {
-  yeoman.generators.Base.apply(this, arguments);
+    var self = this;
 
-  this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
-  });
+    yeoman.generators.Base.apply(this, arguments);
 
-  this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
+    this.on('end', function () {
+        this.installDependencies({ skipInstall: options['skip-install'] });
+    });
+
+    this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
 util.inherits(NeturalGenerator, yeoman.generators.Base);
