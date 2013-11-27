@@ -67,6 +67,8 @@ NeturalGenerator.prototype.setupStyles = function setupStyles() {
     this.mkdir('app/styles/layout');
     this.mkdir('app/styles/modules');
     this.mkdir('app/styles/states');
+
+    this.copy('main.scss', 'app/styles/main.scss');
 };
 
 

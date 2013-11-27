@@ -196,26 +196,6 @@ module.exports = function (grunt) {
             html: ['<%%= yeoman.dist %>/{,*/}*.html'],
             css: ['<%%= yeoman.dist %>/styles/{,*/}*.css']
         },
-        imagemin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.app %>/images',
-                    src: '{,*/}*.{gif,jpeg,jpg,png}',
-                    dest: '<%%= yeoman.dist %>/images'
-                }]
-            }
-        },
-        svgmin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.app %>/images',
-                    src: '{,*/}*.svg',
-                    dest: '<%%= yeoman.dist %>/images'
-                }]
-            }
-        },
         cssmin: {
             // This task is pre-configured if you do not wish to use Usemin
             // blocks for your CSS. By default, the Usemin block from your
@@ -264,7 +244,7 @@ module.exports = function (grunt) {
                     src: [
                         '*.{ico,png,txt}',
                         '.htaccess',
-                        'images/{,*/}*.{webp,gif}',
+                        'images/{,*/}*.*',
                         'styles/fonts/{,*/}*.*'
                     ]
                 }]
@@ -300,8 +280,6 @@ module.exports = function (grunt) {
                 'compass',
                 'copy:styles',
                 'assemble:dist',
-                'imagemin',
-                'svgmin',
                 'htmlmin'
             ]
         }
@@ -329,7 +307,7 @@ module.exports = function (grunt) {
     grunt.registerTask('test', [
         'clean:server',
         'concurrent:test',<% if(includeAutoprefixer) {%>
-        'autoprefixer'<% } %>
+        'autoprefixer',<% } %>
         'connect:test',
         'mocha'
     ]);
