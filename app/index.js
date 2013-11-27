@@ -25,10 +25,16 @@ NeturalGenerator.prototype.askFor = function askFor() {
     var prompts = [{
         name: 'projectName',
         message: 'The name of your project'
+    },{
+        type: 'confirm',
+        message: 'Include autoprefixer?',
+        name: 'includeAutoprefixer',
+        default: true
     }];
 
     this.prompt(prompts, function (props) {
         this.projectName = props.projectName;
+        this.includeAutoprefixer = props.includeAutoprefixer;
 
         cb();
     }.bind(this));
@@ -46,7 +52,7 @@ NeturalGenerator.prototype.projectfiles = function projectfiles() {
     this.copy('jshintrc', '.jshintrc');
     this.copy('bowerrc', '.bowerrc');
     this.copy('gitignore', '.gitignore');
-    this.copy('Gruntfile.js', 'Gruntfile.js');
+    this.template('Gruntfile.js', 'Gruntfile.js');
 };
 
 
