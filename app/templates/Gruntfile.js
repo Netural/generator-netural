@@ -16,7 +16,7 @@ module.exports = function (grunt) {
         },
         watch: {
             compass: {
-                files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+                files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}', '<%%= yeoman.app %>/bower_components/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server'<% if(includeAutoprefixer) {%>, 'autoprefixer'<% } %>]
             },
             styles: {
@@ -24,9 +24,9 @@ module.exports = function (grunt) {
                 tasks: ['copy:styles'<% if(includeAutoprefixer) {%>, 'autoprefixer'<% } %>]
             },
             assemble: {
-                files: ['<%%= yeoman.app %>/templates/layouts/*.hbs',
-                       '<%%= yeoman.app %>/templates/pages/*.hbs',
-                       '<%%= yeoman.app %>/templates/partials/*.hbs'],
+                files: ['<%%= yeoman.app %>/templates/layouts/{,*/}*.hbs',
+                       '<%%= yeoman.app %>/templates/pages/{,*/}*.hbs',
+                       '<%%= yeoman.app %>/templates/partials/{,*/}*.hbs'],
                 tasks: ['assemble:server']
             },
             livereload: {
