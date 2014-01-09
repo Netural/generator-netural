@@ -318,9 +318,9 @@ module.exports = function (grunt) {
         'assemble:dist',
         'useminPrepare',<% if(includeAutoprefixer) {%>
         'autoprefixer',<% } %>
-        'concat',
-        'cssmin',
-        'uglify',
+        'concat:generated',
+        'cssmin:generated',
+        'uglify:generated',
         'modernizr',
         'copy:dist',
         'usemin'
