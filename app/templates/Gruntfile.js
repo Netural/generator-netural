@@ -188,7 +188,7 @@ module.exports = function (grunt) {
             options: {
                 dest: '<%%= yeoman.dist %>'
             },
-            html: '<%%= yeoman.app %>/index.html'
+            html: '<%%= yeoman.dist %>/index.html'
         },
         usemin: {
             options: {
@@ -280,7 +280,6 @@ module.exports = function (grunt) {
             dist: [
                 'compass',
                 'copy:styles',
-                'assemble:dist',
                 'htmlmin'
             ]
         }
@@ -316,6 +315,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'concurrent:dist',
+        'assemble:dist',
         'useminPrepare',<% if(includeAutoprefixer) {%>
         'autoprefixer',<% } %>
         'concat',
