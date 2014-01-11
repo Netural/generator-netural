@@ -21,13 +21,22 @@ describe('netural generator', function () {
 
     it('creates expected files', function (done) {
         var expected = [
-            // add files you expect to exist here.
+            'package.json',
+            'bower.json',
+            '.editorconfig',
             '.jshintrc',
-            '.editorconfig'
+            '.bowerrc',
+            '.gitignore',
+            'Gruntfile.js',
+            'app/scripts/main.js',
+            'app/styles/main.scss',
+            'app/templates/layouts/layout.hbs',
+            'app/templates/pages/index.hbs',
+            'app/templates/partials/scripts.hbs'
         ];
 
         helpers.mockPrompt(this.app, {
-            'someOption': true
+            'projectName': 'test-project'
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
