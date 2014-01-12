@@ -32,11 +32,17 @@ NeturalGenerator.prototype.askFor = function askFor() {
         message: 'Include autoprefixer?',
         name: 'includeAutoprefixer',
         default: true
+    },{
+        type: 'confirm',
+        message: 'Include Netural company notice in JS?',
+        name: 'includeNeturalNotice',
+        default: true
     }];
 
     this.prompt(prompts, function (props) {
         this.projectName = props.projectName;
         this.includeAutoprefixer = props.includeAutoprefixer;
+        this.includeNeturalNotice = props.includeNeturalNotice;
 
         cb();
     }.bind(this));
@@ -60,7 +66,7 @@ NeturalGenerator.prototype.projectfiles = function projectfiles() {
 
 NeturalGenerator.prototype.setupScripts = function setupScripts() {
     this.mkdir('app/scripts');
-    this.copy('main.js', 'app/scripts/main.js')
+    this.template('main.js', 'app/scripts/main.js')
 };
 
 NeturalGenerator.prototype.setupStyles = function setupStyles() {
