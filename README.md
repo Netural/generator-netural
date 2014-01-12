@@ -34,6 +34,7 @@ Netural's front-end generator sets up a project including:
 * [Sass](http://sass-lang.com) compilation
 * Minifaction
 * [Assemble](http://assemble.io) for template generation
+* SMACSS based Sass folders, including [Normalize.css](http://necolas.github.io/normalize.css/)
 * Optional autoprefixer
 
 
