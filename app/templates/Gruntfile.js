@@ -26,7 +26,8 @@ module.exports = function (grunt) {
             assemble: {
                 files: ['<%%= yeoman.app %>/templates/layouts/{,*/}*.hbs',
                        '<%%= yeoman.app %>/templates/pages/{,*/}*.hbs',
-                       '<%%= yeoman.app %>/templates/partials/{,*/}*.hbs'],
+                       '<%%= yeoman.app %>/templates/partials/{,*/}*.hbs',
+                       '<%%= yeoman.app %>/data/{,*/}*.json'],
                 tasks: ['assemble:server']
             },
             livereload: {
@@ -48,6 +49,7 @@ module.exports = function (grunt) {
                 layout: 'layout.hbs',
                 layoutdir: '<%%= yeoman.app %>/templates/layouts',
                 assets: 'dist/images',
+                data: ['<%%= yeoman.app %>/data/*.json'],
                 partials: ['<%%= yeoman.app %>/templates/partials/*.hbs']
             },
             dist: {

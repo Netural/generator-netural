@@ -85,6 +85,7 @@ NeturalGenerator.prototype.setupTemplates = function setupTemplates() {
     this.mkdir('app/templates/layouts');
     this.mkdir('app/templates/pages');
     this.mkdir('app/templates/partials');
+    this.mkdir('app/data');
 
     this.template('layout.hbs','app/templates/layouts/layout.hbs');
     this.template('index.hbs','app/templates/pages/index.hbs');
