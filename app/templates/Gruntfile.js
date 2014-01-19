@@ -280,7 +280,7 @@ module.exports = function (grunt) {
             ],
             dist: [
                 'compass',
-                'copy:styles',
+                'copy',
                 'htmlmin'
             ]
         }
