@@ -35,8 +35,7 @@ module.exports = function (grunt) {
                     livereload: '<%%= connect.options.livereload %>'
                 },
                 files: [
-                    '.tmp/*.html',
-                    '<%%= yeoman.app %>/*.html',
+                    '{.tmp,<%%= yeoman.app %>}/*.html',
                     '.tmp/styles/{,*/}*.css',
                     '{.tmp,<%%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%%= yeoman.app %>/images/{,*/}*.{gif,jpeg,jpg,png,svg,webp}'
@@ -281,7 +280,7 @@ module.exports = function (grunt) {
             ],
             dist: [
                 'compass',
-                'copy:styles',
+                'copy',
                 'htmlmin'
             ]
         }
