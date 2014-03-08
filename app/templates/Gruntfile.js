@@ -15,13 +15,9 @@ module.exports = function (grunt) {
             dist: 'dist'
         },
         watch: {
-            compass: {
+            sass: {
                 files: ['<%%= yeoman.app %>/styles/{,*/}*.{scss,sass}', '<%%= yeoman.app %>/bower_components/{,*/}*.{scss,sass}'],
-                tasks: ['compass:server'<% if(includeAutoprefixer) {%>, 'autoprefixer'<% } %>]
-            },
-            styles: {
-                files: ['<%%= yeoman.app %>/styles/{,*/}*.css'],
-                tasks: ['copy:styles'<% if(includeAutoprefixer) {%>, 'autoprefixer'<% } %>]
+                tasks: ['sass:server'<% if(includeAutoprefixer) {%>, 'autoprefixer'<% } %>]
             },
             assemble: {
                 files: ['<%%= yeoman.app %>/templates/layouts/{,*/}*.hbs',
@@ -132,12 +128,26 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     style: 'compressed'
-                }
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/styles/',
+                    src: ['*.scss'],
+                    dest: '<%= yeoman.dist %>/styles',
+                    ext: '.css'
+                }]
             },
             server: {
                 options: {
                     debugInfo: true
-                }
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/styles/',
+                    src: ['*.scss'],
+                    dest: '.tmp/styles',
+                    ext: '.css'
+                }]
             }
         },<% if(includeAutoprefixer) {%>
         autoprefixer: {
