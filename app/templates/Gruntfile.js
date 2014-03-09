@@ -256,14 +256,18 @@ module.exports = function (grunt) {
             }
         },
         modernizr: {
-            devFile: '<%%= yeoman.app %>/bower_components/modernizr/modernizr.js',
-            outputFile: '<%%= yeoman.dist %>/bower_components/modernizr/modernizr.js',
-            files: [
-                '<%%= yeoman.dist %>/scripts/{,*/}*.js',
-                '<%%= yeoman.dist %>/styles/{,*/}*.css',
-                '!<%%= yeoman.dist %>/scripts/vendor/*'
-            ],
-            uglify: true
+            dist: {
+                devFile: '<%= yeoman.app %>/bower_components/modernizr/modernizr.js',
+                outputFile: '<%= yeoman.dist %>/scripts/vendor/modernizr.js',
+                files: {
+                    src: [
+                        '<%= yeoman.dist %>/scripts/{,*/}*.js',
+                        '<%= yeoman.dist %>/styles/{,*/}*.css',
+                        '!<%= yeoman.dist %>/scripts/vendor/*'
+                    ]
+                },
+                uglify: true    
+            }  
         },
         concurrent: {
             server: [
@@ -318,8 +322,8 @@ module.exports = function (grunt) {
         'concat:generated',
         'cssmin:generated',
         'uglify:generated',
-        'modernizr',
         'copy:dist',
+        'modernizr',
         'usemin'
     ]);
 
