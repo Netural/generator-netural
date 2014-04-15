@@ -125,23 +125,23 @@ module.exports = function (grunt) {
             }
         },
         sass: {
-			dist: {
-				options: {
-		    		style: 'compressed'
-				},
-				files: {
-					'<%= yeoman.dist %>/styles/main.css' : ['<%= yeoman.app %>/styles/main.scss']
-				}
-			},
-			server: {
-				options: {
-					debugInfo: true
-				},
-				files: {
-					'.tmp/styles/main.css' : ['<%= yeoman.app %>/styles/main.scss']
-				}
-			}
-		},<% if(includeAutoprefixer) {%>
+            dist: {
+                options: {
+                    style: 'compressed'
+                },
+                files: {
+                    '<%= yeoman.dist %>/styles/main.css' : ['<%= yeoman.app %>/styles/main.scss']
+                }
+            },
+            server: {
+                options: {
+                    debugInfo: true
+                },
+                files: {
+                    '.tmp/styles/main.css' : ['<%= yeoman.app %>/styles/main.scss']
+                }
+            }
+        },<% if(includeAutoprefixer) {%>
         autoprefixer: {
             options: {
                 browsers: ['last 1 version']
