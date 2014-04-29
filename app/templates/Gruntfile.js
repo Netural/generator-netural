@@ -1,5 +1,7 @@
 'use strict';
 
+/** build with generator-netural 0.1.4 **/
+
 module.exports = function (grunt) {
     // show elapsed time at the end
     require('time-grunt')(grunt);
@@ -258,8 +260,8 @@ module.exports = function (grunt) {
                         '!<%%= yeoman.dist %>/scripts/vendor/*'
                     ]
                 },
-                uglify: true    
-            }  
+                uglify: true
+            }
         },
         concurrent: {
             server: [
