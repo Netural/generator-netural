@@ -1,9 +1,11 @@
 {
   "name": "generator-netural",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Netural's front-end generator, based on yeoman",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "assemble",
+    "sass"
   ],
   "homepage": "https://github.com/ddprrt/generator-netural",
   "bugs": "https://github.com/ddprrt/generator-netural/issues",
