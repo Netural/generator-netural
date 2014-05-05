@@ -262,21 +262,6 @@ module.exports = function (grunt) {
                 },
                 uglify: true
             }
-        },
-        concurrent: {
-            server: [
-                'sass',
-                'copy:styles',
-                'assemble:server'
-            ],
-            test: [
-                'copy:styles'
-            ],
-            dist: [
-                'sass',
-                'copy',
-                'htmlmin'
-            ]
         }
     });
 
@@ -287,7 +272,9 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'concurrent:server',<% if(includeAutoprefixer) {%>
+            'sass',
+            'copy:styles',
+            'assemble:server',<% if(includeAutoprefixer) {%>
             'autoprefixer',<% } %>
             'connect:livereload',
             'watch'
@@ -299,17 +286,12 @@ module.exports = function (grunt) {
       grunt.task.run(['serve']);
     });
 
-    grunt.registerTask('test', [
-        'clean:server',
-        'concurrent:test',<% if(includeAutoprefixer) {%>
-        'autoprefixer',<% } %>
-        'connect:test',
-        'mocha'
-    ]);
 
     grunt.registerTask('build', [
         'clean:dist',
-        'concurrent:dist',
+        'sass',
+        'copy',
+        'htmlmin',
         'assemble:dist',
         'useminPrepare',<% if(includeAutoprefixer) {%>
         'autoprefixer',<% } %>
@@ -322,8 +304,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('default', [
-        'jshint',
-        'test',
         'build'
     ]);
 };
