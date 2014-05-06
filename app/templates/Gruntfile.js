@@ -132,7 +132,7 @@ module.exports = function (grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    '<%= yeoman.dist %>/styles/main.css' : ['<%= yeoman.app %>/styles/main.scss']
+                    '<%%= yeoman.dist %>/styles/main.css' : ['<%%= yeoman.app %>/styles/main.scss']
                 }
             },
             server: {
@@ -140,7 +140,7 @@ module.exports = function (grunt) {
                     debugInfo: true
                 },
                 files: {
-                    '.tmp/styles/main.css' : ['<%= yeoman.app %>/styles/main.scss']
+                    '.tmp/styles/main.css' : ['<%%= yeoman.app %>/styles/main.scss']
                 }
             }
         },<% if(includeAutoprefixer) {%>
