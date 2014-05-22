@@ -61,6 +61,7 @@ NeturalGenerator.prototype.projectfiles = function projectfiles() {
     this.copy('bowerrc', '.bowerrc');
     this.copy('gitignore', '.gitignore');
     this.template('Gruntfile.js', 'Gruntfile.js');
+    this.template('_readme.md', 'Readme.md');
 };
 
 
