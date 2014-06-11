@@ -18,7 +18,7 @@
     "grunt-contrib-watch": "~0.5.2",
     "grunt-rev": "~0.1.0",<% if(includeAutoprefixer) {%>
     "grunt-autoprefixer": "~0.2.0",<% } %>
-    "grunt-usemin": "~2.0.0",
+    "grunt-usemin": "~2.2.0",
     "grunt-mocha": "~0.4.0",
     "grunt-modernizr": "~0.5.2",
     "load-grunt-tasks": "~0.1.0",
