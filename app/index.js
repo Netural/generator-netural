@@ -37,12 +37,18 @@ NeturalGenerator.prototype.askFor = function askFor() {
         message: 'Include Netural company notice in JS?',
         name: 'includeNeturalNotice',
         default: true
+    },{
+        type: 'confirm',
+        message: 'Include basic proxy configuration for connect?',
+        name: 'includeProxy',
+        default: false
     }];
 
     this.prompt(prompts, function (props) {
         this.projectName = props.projectName;
         this.includeAutoprefixer = props.includeAutoprefixer;
         this.includeNeturalNotice = props.includeNeturalNotice;
+        this.includeProxy = props.includeProxy;
 
         cb();
     }.bind(this));

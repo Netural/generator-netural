@@ -3,6 +3,7 @@
 /** build with generator-netural 0.1.4 **/
 
 module.exports = function (grunt) {
+    <% if(includeProxy) {%> var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;<% } %>
     // show elapsed time at the end
     require('time-grunt')(grunt);
     // load all grunt tasks
@@ -73,8 +74,34 @@ module.exports = function (grunt) {
                     base: [
                         '.tmp',
                         '<%%= yeoman.app %>'
-                    ]
-                }
+                    ] <% if(includeProxy) {%>,
+                    middleware: function(connect, options) {
+                        // Same as in grunt-contrib-connect
+                        var middlewares = [];
+                        var directory = options.directory ||
+                        options.base[options.base.length - 1];
+                        if (!Array.isArray(options.base)) {
+                            options.base = [options.base];
+                        }
+
+                        // Same as in grunt-contrib-connect
+                        options.base.forEach(function(base) {
+                            middlewares.push(connect.static(base));
+                        });
+
+                        middlewares.push(proxySnippet);
+
+                        middlewares.push(connect.directory(directory));
+                        return middlewares;
+                    }<% } %>
+                }<% if(includeProxy) {%>,
+                proxies: [
+                    {
+                        context: '/',
+                        host: '0.0.0.0:9000',
+                        changeOrigin: true
+                    }
+                ]<% } %>
             },
             test: {
                 options: {
@@ -275,7 +302,8 @@ module.exports = function (grunt) {
             'sass',
             'copy:styles',
             'assemble:server',<% if(includeAutoprefixer) {%>
-            'autoprefixer',<% } %>
+            'autoprefixer',<% } %><% if(includeProxy) {%>
+            'configureProxies:livereload',<% } %>
             'connect:livereload',
             'watch'
         ]);
