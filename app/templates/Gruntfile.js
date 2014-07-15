@@ -8,7 +8,7 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
     // load all grunt tasks
     require('jit-grunt')(grunt, {
-        useminPrepare:: 'grunt-usemin'
+        useminPrepare: 'grunt-usemin'
     });
 
     grunt.initConfig({
@@ -133,26 +133,6 @@ module.exports = function (grunt) {
             },
             server: '.tmp'
         },
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc',
-                reporter: require('jshint-stylish')
-            },
-            all: [
-                'Gruntfile.js',
-                '<%%= yeoman.app %>/scripts/{,*/}*.js',
-                '!<%%= yeoman.app %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
-            ]
-        },
-        mocha: {
-            all: {
-                options: {
-                    run: true,
-                    urls: ['http://<%%= connect.test.options.hostname %>:<%%= connect.test.options.port %>/index.html']
-                }
-            }
-        },
         sass: {
             dist: {
                 options: {
@@ -184,17 +164,6 @@ module.exports = function (grunt) {
                 }]
             }
         },<% } %>
-        // not used since Uglify task does concat,
-        // but still available if needed
-        /*concat: {
-            dist: {}
-        },*/
-        // not enabled since usemin task does concat and uglify
-        // check index.html to edit your build targets
-        // enable this task if you prefer defining your build targets here
-        /*uglify: {
-            dist: {}
-        },*/
         'bower-install': {
             app: {
                 html: '<%%= yeoman.app %>/templates/partials/scripts.hbs',
@@ -214,22 +183,6 @@ module.exports = function (grunt) {
             },
             html: ['<%%= yeoman.dist %>/{,*/}*.html'],
             css: ['<%%= yeoman.dist %>/styles/{,*/}*.css']
-        },
-        cssmin: {
-            // This task is pre-configured if you do not wish to use Usemin
-            // blocks for your CSS. By default, the Usemin block from your
-            // `index.html` will take care of minification, e.g.
-            //
-            //     <!-- build:css({.tmp,app}) styles/main.css -->
-            //
-            // dist: {
-            //     files: {
-            //         '<%%= yeoman.dist %>/styles/main.css': [
-            //             '.tmp/styles/{,*/}*.css',
-            //             '<%%= yeoman.app %>/styles/{,*/}*.css'
-            //         ]
-            //     }
-            // }
         },
         htmlmin: {
             dist: {
