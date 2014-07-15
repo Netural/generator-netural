@@ -7,9 +7,9 @@ module.exports = function (grunt) {
     // show elapsed time at the end
     require('time-grunt')(grunt);
     // load all grunt tasks
-    require('load-grunt-tasks')(grunt);
-
-    grunt.loadNpmTasks('assemble');
+    require('jit-grunt')(grunt, {
+        useminPrepare:: 'grunt-usemin'
+    });
 
     grunt.initConfig({
         // configurable paths
