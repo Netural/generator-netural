@@ -8,7 +8,8 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
     // load all grunt tasks
     require('jit-grunt')(grunt, {
-        useminPrepare: 'grunt-usemin'
+        useminPrepare: 'grunt-usemin'<% if(includeProxy) {%>,
+        configureProxies: 'grunt-connect-proxy'<% } %>
     });
 
     grunt.initConfig({
