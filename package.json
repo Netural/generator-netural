@@ -1,6 +1,6 @@
 {
   "name": "generator-netural",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Netural's front-end generator, based on yeoman",
   "keywords": [
     "yeoman-generator",

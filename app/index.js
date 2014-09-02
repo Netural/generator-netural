@@ -64,6 +64,7 @@ NeturalGenerator.prototype.app = function app() {
 NeturalGenerator.prototype.projectfiles = function projectfiles() {
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
+    this.copy('jscsrc', '.jscsrc');
     this.copy('bowerrc', '.bowerrc');
     this.copy('gitignore', '.gitignore');
     this.template('Gruntfile.js', 'Gruntfile.js');

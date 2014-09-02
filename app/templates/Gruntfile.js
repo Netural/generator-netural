@@ -30,6 +30,10 @@ module.exports = function (grunt) {
                        '<%%= yeoman.app %>/data/{,*/}*.json'],
                 tasks: ['assemble:server']
             },
+            scripts: {
+                files: ['<%%= yeoman.app %>/scripts/**/*.js'],
+                tasks: ['jshint', 'jscs']
+            },
             livereload: {
                 options: {
                     livereload: '<%%= connect.options.livereload %>'
@@ -243,6 +247,30 @@ module.exports = function (grunt) {
                 },
                 uglify: true
             }
+        },
+        jshint: {
+            dev: {
+                options: {
+                    jshintrc: '.jshintrc'
+                },
+                files: {
+                    src: [
+                        'app/scripts/**/*.js'
+                    ]
+                }
+            }
+        },
+        jscs: {
+            dev: {
+                options: {
+                    config: '.jscsrc'
+                },
+                files: {
+                    src: [
+                        'app/scripts/**/*.js'
+                    ]
+                }
+            }
         }
     });
 
@@ -255,6 +283,8 @@ module.exports = function (grunt) {
             'clean:server',
             'sass',
             'copy:styles',
+            'jshint',
+            'jscs',
             'assemble:server',<% if(includeAutoprefixer) {%>
             'autoprefixer',<% } %><% if(includeProxy) {%>
             'configureProxies:livereload',<% } %>
