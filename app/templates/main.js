@@ -3,5 +3,4 @@
 } else {
 	console = {};
 	console.log = console.error = function() {};
-}
-<% } %>
+}<% } %>
