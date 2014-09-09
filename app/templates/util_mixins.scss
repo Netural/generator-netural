@@ -8,8 +8,8 @@
         src: url('#{$font}.woff') format('woff'),
              url('#{$font}.ttf') format('truetype'),
              url('#{$font}.svg') format('svg');
-            font-weight: $weight;
-            font-style: $style;
+        font-weight: $weight;
+        font-style: $style;
     }
 }
 
