@@ -141,7 +141,8 @@ module.exports = function (grunt) {
         sass: {
             dist: {
                 options: {
-                    style: 'compressed'
+                    style: 'compressed',
+                    sourcemap: 'none'
                 },
                 files: {
                     '<%%= yeoman.dist %>/styles/main.css' : ['<%%= yeoman.app %>/styles/main.scss']
