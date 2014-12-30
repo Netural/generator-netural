@@ -24,6 +24,7 @@
     "globals": {
         "$": true,
         "jQuery": true,
-        "console": true
+        "console": true,
+        "google": true
     }
 }
