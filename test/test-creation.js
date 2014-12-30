@@ -81,7 +81,7 @@ describe('netural generator - not for netural', function () {
         helpers.mockPrompt(this.app, {
             'projectName': 'test-project',
             'includeAutoprefixer': false,
-            'includeNeturalNotice': fasee
+            'includeNeturalNotice': false
         });
         this.app.options['skip-install'] = true;
         this.app.run({}, function () {
