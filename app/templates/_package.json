@@ -24,7 +24,7 @@
     "time-grunt": "~0.1.1",
     "jit-grunt": "0.7.0",
     "assemble": "~0.4.28"<% if(includeProxy) {%>,
-    "grunt-connect-proxy": "~0.1.10"<% } %>
+    "grunt-connect-proxy": "0.1.10"<% } %>
   },
   "engines": {
     "node": ">=0.10.0"
