@@ -5,6 +5,11 @@
   "dependencies": {},
   "devDependencies": {
       "gulp": "^3.9.0",
+      "gulp-util": "^3.0.6",
+      "gulp-sourcemaps": "^1.5.2",
+      "gulp-sass": "^2.0.4",
+      "gulp-css-globbing": "^0.1.8",
+      "del": "^1.2.0",
       "require-dir": "^0.3.0"
   },
   "engines": {

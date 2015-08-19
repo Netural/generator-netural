@@ -1,0 +1,9 @@
+{
+    "tasks": "gulp",
+    "src": {
+        "scss": "app/styles"
+    },
+    "dest": {
+        "css": "dist/styles.css"
+    }
+}

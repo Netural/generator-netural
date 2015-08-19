@@ -71,7 +71,14 @@ module.exports = generators.Base.extend({
 
     setupGulp: function() {
         this.mkdir('gulp');
-        this.template('gulpconfig.js', 'gulpconfig.js');
+        this.template('gulp/config.json', 'gulp/config.json');
+        this.copy('gulp/default.js', 'gulp/default.js');
+        this.copy('gulp/clean.js', 'gulp/clean.js');
+        this.copy('gulp/build.js', 'gulp/build.js');
+        this.copy('gulp/watch.js', 'gulp/watch.js');
+        this.copy('gulp/test.js', 'gulp/test.js');
+        this.copy('gulp/styles.js', 'gulp/styles.js');
         this.copy('gulpfile.js', 'gulpfile.js');
-    }
+    },
+
 });
