@@ -99,7 +99,6 @@ module.exports = generators.Base.extend({
     },
 
     _setupTemplateOnly: function() {
-        console.log("_setupTemplateOnly");
         this.mkdir('app');
         this.mkdir('app/images');
         this.mkdir('app/fonts');
@@ -125,10 +124,11 @@ module.exports = generators.Base.extend({
         this.mkdir(stylesDir+'/styles/util');
 
         this.copy('styles.scss', stylesDir+'/styles/styles.scss');
-        this.copy('mixins.scss', stylesDir+'/styles/util/mixins.scss');
-        this.copy('pattern.scss', stylesDir+'/styles/util/pattern.scss');
+        this.copy('variables.scss', stylesDir+'/styles/_variables.scss');
+        this.copy('mixins.scss', stylesDir+'/styles/util/_mixins.scss');
+        this.copy('pattern.scss', stylesDir+'/styles/util/_pattern.scss');
         if(this.frontendLibrary === 'None') {
-            this.copy('states.scss', stylesDir+'/styles/states/global.scss');
+            this.copy('states.scss', stylesDir+'/styles/states/_global.scss');
         }
     },
 

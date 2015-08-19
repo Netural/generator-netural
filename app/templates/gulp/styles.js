@@ -12,7 +12,7 @@ gulp.task('styles', function () {
     }))
     .pipe(sourcemaps.init())
     .pipe(sass())
-    .on('error', util.log.bind(gutil, 'Saas Error'))
+    .on('error', util.log.bind(util, 'Saas Error'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.dest.css));
 });
