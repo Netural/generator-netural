@@ -1,111 +1,77 @@
 'use strict';
 var util = require('util');
 var path = require('path');
-var yeoman = require('yeoman-generator');
+var generators = require('yeoman-generator');
+var htmlwiring = require("html-wiring");
+var _ = require("lodash");
 
+module.exports = generators.Base.extend({
 
-var NeturalGenerator = module.exports = function NeturalGenerator(args, options, config) {
-    var self = this;
+    constructor: function () {
 
-    yeoman.generators.Base.apply(this, arguments);
+        generators.Base.apply(this, arguments);
 
-    this.on('end', function () {
-        this.installDependencies({ skipInstall: options['skip-install'] });
-    });
+        this.on('end', function () {
+            this.installDependencies();
+        });
 
-    this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
-};
+        this.pkg = JSON.parse(htmlwiring.readFileAsString(path.join(__dirname, '../package.json')));
+    },
 
-util.inherits(NeturalGenerator, yeoman.generators.Base);
+    prompting: function () {
+        var cb = this.async();
 
-NeturalGenerator.prototype.askFor = function askFor() {
-    var cb = this.async();
+        // have Yeoman greet the user.
+        console.log("Netural Frontend project generator");
 
-    // have Yeoman greet the user.
-    console.log("Netural Frontend project generator");
+        this.prompt([{
+            name: 'projectName',
+            message: 'The name of your project'
+        },{
+            type: 'confirm',
+            message: 'Include Netural company notice in JS?',
+            name: 'includeNeturalNotice',
+            default: true
+        },{
+            type: 'list',
+            choices: ["None - templating only", "Content Node"],
+            message: 'For which CMS are you developing?',
+            name: 'cms',
+            default: "None - templating only"
+        },{
+            type: 'list',
+            choices: ["None", "Bootstrap", "UIKit"],
+            message: 'Which frontend library do you want to use?',
+            name: 'frontendLibrary',
+            default: "None"
+        },{
+            type: 'confirm',
+            message: 'Include mojito.js framework?',
+            name: 'includeMojito',
+            default: true
+        }], function (answers) {
+            this.projectName = answers.projectName;
+            this.projectSlug = _.kebabCase(answers.projectName);
+            this.includeNeturalNotice = answers.includeNeturalNotice;
+            this.cms = answers.cms;
+            this.frontendLibrary = answers.frontendLibrary;
+            this.includeMojito = answers.includeMojito;
+            cb();
+        }.bind(this));
 
-    var prompts = [{
-        name: 'projectName',
-        message: 'The name of your project'
-    },{
-        type: 'confirm',
-        message: 'Include autoprefixer?',
-        name: 'includeAutoprefixer',
-        default: true
-    },{
-        type: 'confirm',
-        message: 'Include Netural company notice in JS?',
-        name: 'includeNeturalNotice',
-        default: true
-    },{
-        type: 'confirm',
-        message: 'Include basic proxy configuration for connect?',
-        name: 'includeProxy',
-        default: false
-    }];
+    },
 
-    this.prompt(prompts, function (props) {
-        this.projectName = props.projectName;
-        this.includeAutoprefixer = props.includeAutoprefixer;
-        this.includeNeturalNotice = props.includeNeturalNotice;
-        this.includeProxy = props.includeProxy;
+    setupProjectFiles: function() {
+        this.template('_package.json', 'package.json');
+        this.copy('editorconfig', '.editorconfig');
+        this.copy('jshintrc', '.jshintrc');
+        this.copy('jscsrc', '.jscsrc');
+        this.copy('gitignore', '.gitignore');
+    },
 
-        cb();
-    }.bind(this));
-};
-
-NeturalGenerator.prototype.app = function app() {
-    this.mkdir('app');
-
-    this.template('_package.json', 'package.json');
-    this.template('_bower.json', 'bower.json');
-};
-
-NeturalGenerator.prototype.projectfiles = function projectfiles() {
-    this.copy('editorconfig', '.editorconfig');
-    this.copy('jshintrc', '.jshintrc');
-    this.copy('jscsrc', '.jscsrc');
-    this.copy('bowerrc', '.bowerrc');
-    this.copy('gitignore', '.gitignore');
-    this.template('Gruntfile.js', 'Gruntfile.js');
-    this.template('_readme.md', 'Readme.md');
-};
-
-
-NeturalGenerator.prototype.setupScripts = function setupScripts() {
-    this.mkdir('app/scripts');
-    this.template('main.js', 'app/scripts/main.js')
-};
-
-NeturalGenerator.prototype.setupStyles = function setupStyles() {
-    this.mkdir('app/styles');
-    this.mkdir('app/styles/base');
-    this.mkdir('app/styles/layout');
-    this.mkdir('app/styles/modules');
-    this.mkdir('app/styles/states');
-    this.mkdir('app/styles/util');
-
-    this.copy('main.scss', 'app/styles/main.scss');
-    this.copy('states_global.scss', 'app/styles/states/_global.scss');
-    this.copy('util_pattern.scss', 'app/styles/util/_pattern.scss');
-    this.copy('util_mixins.scss', 'app/styles/util/_mixins.scss');
-};
-
-
-NeturalGenerator.prototype.setupTemplates = function setupTemplates() {
-    this.mkdir('app/templates');
-    this.mkdir('app/templates/layouts');
-    this.mkdir('app/templates/pages');
-    this.mkdir('app/templates/partials');
-    this.mkdir('app/data');
-
-    this.template('layout.hbs','app/templates/layouts/layout.hbs');
-    this.template('index.hbs','app/templates/pages/index.hbs');
-    this.template('scripts.hbs','app/templates/partials/scripts.hbs');
-};
-
-NeturalGenerator.prototype.setupDirectories = function setupDirectories() {
-    this.mkdir('app/images');
-    this.mkdir('app/scripts');
-    this.mkdir('app/fonts');
-};
+    setupGulp: function() {
+        this.mkdir('gulp');
+        this.template('gulpconfig.js', 'gulpconfig.js');
+        this.copy('gulpfile.js', 'gulpfile.js');
+    }
+});
