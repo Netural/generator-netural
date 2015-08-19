@@ -1,8 +1,10 @@
 {
     "src": {
-        "scss": "app/styles"
+        "scss": "app/styles",
+        "js": "app/scripts/main.js"
     },
     "dest": {
-        "css": "dist/styles"
+        "css": "dist/styles",
+        "js": "dist/scripts"
     }
 }
