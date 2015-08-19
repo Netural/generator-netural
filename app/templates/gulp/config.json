@@ -1,10 +1,23 @@
 {
     "src": {
         "scss": "app/styles",
-        "js": "app/scripts/main.js"
+        "js": "app/scripts/main.js",
+        "img": "app/images"
     },
     "dest": {
         "css": "dist/styles",
-        "js": "dist/scripts"
-    }
+        "js": "dist/scripts",
+        "img": "dist/images"
+    },
+    "browsers": [
+        'ie >= 8',
+        'ie_mob >= 10',
+        'ff >= 30',
+        'chrome >= 34',
+        'safari >= 7',
+        'opera >= 23',
+        'ios >= 7',
+        'android >= 4.4',
+        'bb >= 10'
+    ]
 }
