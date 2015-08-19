@@ -50,12 +50,15 @@ module.exports = generators.Base.extend({
             name: 'includeMojito',
             default: true
         }], function (answers) {
+
+            // answers
             this.projectName = answers.projectName;
             this.projectSlug = _.kebabCase(answers.projectName);
             this.includeNeturalNotice = answers.includeNeturalNotice;
             this.cms = answers.cms;
             this.frontendLibrary = answers.frontendLibrary;
             this.includeMojito = answers.includeMojito;
+
             cb();
         }.bind(this));
 
@@ -63,6 +66,7 @@ module.exports = generators.Base.extend({
 
     setupProjectFiles: function() {
         this.template('_package.json', 'package.json');
+        this.template('_bower.json', 'bower.json');
         this.copy('editorconfig', '.editorconfig');
         this.copy('jshintrc', '.jshintrc');
         this.copy('jscsrc', '.jscsrc');
@@ -80,5 +84,64 @@ module.exports = generators.Base.extend({
         this.copy('gulp/styles.js', 'gulp/styles.js');
         this.copy('gulpfile.js', 'gulpfile.js');
     },
+
+    setupProject: function() {
+        if(this.cms === 'Content Node') {
+            this._setupContentNode();
+        } else {
+            console.log("setupProject");
+            this._setupTemplateOnly();
+        }
+    },
+
+    _setupContentNode: function() {
+
+    },
+
+    _setupTemplateOnly: function() {
+        console.log("_setupTemplateOnly");
+        this.mkdir('app');
+        this.mkdir('app/images');
+        this.mkdir('app/fonts');
+        this.mkdir('app/data');
+        this.mkdir('app/templates');
+        this.mkdir('app/templates/layouts');
+        this.mkdir('app/templates/pages');
+        this.mkdir('app/templates/components');
+        this._setupStyles('app');
+        this._setupScripts('app');
+    },
+
+    _setupStyles: function(dir) {
+        var stylesDir = 'app'
+        if(typeof dir === 'string') {
+            stylesDir = dir;
+        }
+        this.mkdir(stylesDir+'/styles');
+        this.mkdir(stylesDir+'/styles/base');
+        this.mkdir(stylesDir+'/styles/layout');
+        this.mkdir(stylesDir+'/styles/modules');
+        this.mkdir(stylesDir+'/styles/states');
+        this.mkdir(stylesDir+'/styles/util');
+
+        this.copy('styles.scss', stylesDir+'/styles/styles.scss');
+        this.copy('mixins.scss', stylesDir+'/styles/util/mixins.scss');
+        this.copy('pattern.scss', stylesDir+'/styles/util/pattern.scss');
+        if(this.frontendLibrary === 'None') {
+            this.copy('states.scss', stylesDir+'/styles/states/global.scss');
+        }
+    },
+
+    _setupScripts: function(dir) {
+        var stylesDir = 'app'
+        if(typeof dir === 'string') {
+            stylesDir = dir;
+        }
+        this.mkdir(stylesDir+'/scripts');
+
+        if(this.includeMojito) {
+            this.mkdir(stylesDir+'/scripts/controllers');
+        }
+    }
 
 });

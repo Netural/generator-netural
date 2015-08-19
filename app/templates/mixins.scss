@@ -1,0 +1,14 @@
+/*
+ * Includes a webfont in eot, woff, ttf, svg.
+ */
+@mixin webfont($family, $font, $weight:normal, $style:normal) {
+    @font-face {
+        font-family: $family;
+        src: url('#{$font}.eot');
+        src: url('#{$font}.woff') format('woff'),
+             url('#{$font}.ttf') format('truetype'),
+             url('#{$font}.svg') format('svg');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
