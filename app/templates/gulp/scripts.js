@@ -10,40 +10,31 @@ var util = require('gulp-util');
 var watchify = require('watchify');
 var size       = require('gulp-size');
 
-var customOpts = {
-  entries: [config.src.js],
-  debug: true
-};
-
-var opts = assign({}, watchify.args, customOpts);
 
 var browserifyTask = function(devMode) {
+    var bundle = browserify({
+        debug: true,
+        extensions: ['.js', '.jsx'],
+        entries: config.src.js+'/main.js'
+    });
+    if(devMode) {
+        bundle = watchify(bundle);
+    }
+    bundle.on('update', function(){
+        executeBundle(bundle);
+    });
+    executeBundle(bundle);
+};
 
-  var browserifyThis = function(bundleConfig) {
-
-    var b = browserify(bundleConfig);
-    b.transform(babelify);
-
-    var bundle = function() {
-      return b
+function executeBundle(bundle) {
+    bundle
+        .transform(babelify)
         .bundle()
-        .on('error', util.log.bind(util, 'Browserify Error'))
+        .on("error", function (err) { console.log("Error : " + err.message); })
         .pipe(source('main.js'))
         .pipe(gulp.dest(config.dest.js))
         .pipe(size({title: "scripts"}));
-    };
-
-    if(devMode) {
-        b = watchify(b);
-        b.on('update', bundle);
-        b.on('log', util.log);
-    }
-
-    return bundle();
-  };
-
-  return browserifyThis(opts);
-};
+}
 
 gulp.task('scripts', function () {
     return browserifyTask();
