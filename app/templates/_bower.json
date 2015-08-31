@@ -9,5 +9,13 @@
     "bootstrap-sass": "^3.3.5",<% } %>
     "normalize-scss": "~2.1.2"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "overrides": {
+    "modernizr": {
+        "ignore": true
+    },
+    "normalize-scss": {
+        "ignore": true
+    }
+  }
 }
