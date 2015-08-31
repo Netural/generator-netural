@@ -85,6 +85,7 @@ module.exports = generators.Base.extend({
         this.template('gulp/scripts.js', 'gulp/scripts.js');
         this.template('gulp/serve.js', 'gulp/serve.js');
         this.template('gulp/templates.js', 'gulp/templates.js');
+        this.template('gulp/images.js', 'gulp/images.js');
         this.template('gulpfile.js', 'gulpfile.js');
     },
 

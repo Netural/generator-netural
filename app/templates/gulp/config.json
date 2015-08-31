@@ -5,11 +5,23 @@
         "scss": "app/styles",
         "data": "app/data",
         "templates": "app/templates",
-        "js": "app/scripts/main.js"
+        "img": "app/images"
     },
     "dest": {
         "css": "dist/styles",
         "js": "dist/scripts",
-        "templates": "dist"
-    }
+        "templates": "dist",
+        "images": "dist/images"
+    },
+    "browsers": [
+        "ie >= 8",
+        "ie_mob >= 10",
+        "ff >= 30",
+        "chrome >= 34",
+        "safari >= 7",
+        "opera >= 23",
+        "ios >= 7",
+        "android >= 4.4",
+        "bb >= 1"
+    ]
 }
