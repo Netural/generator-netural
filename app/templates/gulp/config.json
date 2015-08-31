@@ -1,10 +1,15 @@
 {
     "src": {
+        "images": "app/images",
+        "fonts": "app/fonts",
         "scss": "app/styles",
+        "data": "app/data",
+        "templates": "app/templates",
         "js": "app/scripts/main.js"
     },
     "dest": {
         "css": "dist/styles",
-        "js": "dist/scripts"
+        "js": "dist/scripts",
+        "templates": "dist"
     }
 }

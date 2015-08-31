@@ -84,6 +84,7 @@ module.exports = generators.Base.extend({
         this.template('gulp/styles.js', 'gulp/styles.js');
         this.template('gulp/scripts.js', 'gulp/scripts.js');
         this.template('gulp/serve.js', 'gulp/serve.js');
+        this.template('gulp/templates.js', 'gulp/templates.js');
         this.template('gulpfile.js', 'gulpfile.js');
     },
 
@@ -111,7 +112,7 @@ module.exports = generators.Base.extend({
         this.mkdir('app/templates/components');
         this._setupStyles('app');
         this._setupScripts('app');
-        this.template('layout.hbs', 'app/templates/layouts/layout.hbs');
+        this.template('default.hbs', 'app/templates/layouts/default.hbs');
         this.template('index.hbs', 'app/templates/pages/index.hbs');
     },
 
