@@ -129,7 +129,7 @@ module.exports = generators.Base.extend({
         this.mkdir(appDir+'/styles/states');
         this.mkdir(appDir+'/styles/util');
 
-        this.copy('styles.scss', appDir+'/styles/styles.scss');
+        this.copy('main.scss', appDir+'/styles/main.scss');
         this.copy('variables.scss', appDir+'/styles/_variables.scss');
         this.copy('mixins.scss', appDir+'/styles/util/_mixins.scss');
         this.copy('pattern.scss', appDir+'/styles/util/_pattern.scss');
