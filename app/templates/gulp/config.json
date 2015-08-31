@@ -3,9 +3,11 @@
         "images": "app/images",
         "fonts": "app/fonts",
         "scss": "app/styles",
+        "js": "app/scripts",
         "data": "app/data",
         "templates": "app/templates",
-        "img": "app/images"
+        "img": "app/images",
+        "bower_components": "bower_components"
     },
     "dest": {
         "css": "dist/styles",
