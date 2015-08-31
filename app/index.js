@@ -111,6 +111,8 @@ module.exports = generators.Base.extend({
         this.mkdir('app/templates/components');
         this._setupStyles('app');
         this._setupScripts('app');
+        this.template('layout.hbs', 'app/templates/layouts/layout.hbs');
+        this.template('index.hbs', 'app/templates/pages/index.hbs');
     },
 
     _setupStyles: function(dir) {
