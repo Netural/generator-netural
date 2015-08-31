@@ -4,14 +4,15 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var assign = require('lodash.assign');
 var babelify = require('babelify');
-var util        = require('gulp-util');
+var util = require('gulp-util');
+var watchify = require('watchify');
 
 var customOpts = {
   entries: [config.src.js],
   debug: true
 }
 
-var opts = assign({}, customOpts);
+var opts = assign({}, watchify.args, customOpts);
 
 var browserifyTask = function(devMode) {
 
@@ -28,6 +29,12 @@ var browserifyTask = function(devMode) {
         .pipe(gulp.dest(config.dest.js));
     };
 
+    if(devMode) {
+        b = watchify(b);
+        b.on('update', bundle);
+        b.on('log', util.log);
+    }
+
     return bundle();
   };
 
@@ -38,4 +45,6 @@ gulp.task('scripts', function () {
     return browserifyTask();
 });
 
-module.exports = browserifyTask;
+gulp.task('scripts:watch', function () {
+    return browserifyTask(true);
+});

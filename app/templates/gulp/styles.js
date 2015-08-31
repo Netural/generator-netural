@@ -4,15 +4,24 @@ var sourcemaps   = require('gulp-sourcemaps');
 var util         = require('gulp-util');
 var globbing     = require('gulp-css-globbing');
 var autoprefixer = require('gulp-autoprefixer');
+var plumber      = require('gulp-plumber');
 var config       = require('./config');
+
+var onError = function(error) {
+	console.error(error);
+    return false;
+};
 
 gulp.task('styles', function () {
   return gulp.src(config.src.scss + '/**/*.{sass,scss}')
   	.pipe(globbing({
         extensions: ['.scss']
     }))
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', util.log.bind(util, 'Saas Error')))
+    //.pipe(sourcemaps.init())
+    .pipe(sass())
+    plumber({
+		errorHandler: onError
+	})
     .pipe(autoprefixer({
         browsers:  [
             'ie >= 8',
@@ -26,6 +35,11 @@ gulp.task('styles', function () {
             'bb >= 10'
         ]
     }))
-    .pipe(sourcemaps.write())
+    //.pipe(sourcemaps.write())
+    .pipe(plumber.stop())
     .pipe(gulp.dest(config.dest.css));
+});
+
+gulp.task('styles:watch', function () {
+    gulp.watch(config.src.scss + '/**/*.scss', ['styles']);
 });
