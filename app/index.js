@@ -71,6 +71,7 @@ module.exports = generators.Base.extend({
         this.copy('jshintrc', '.jshintrc');
         this.copy('jscsrc', '.jscsrc');
         this.copy('gitignore', '.gitignore');
+        this.copy('readme.md', 'README.md');
     },
 
     setupGulp: function() {
