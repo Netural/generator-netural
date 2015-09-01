@@ -9,6 +9,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var plumber      = require('gulp-plumber');
 var config       = require('./config');
 var size         = require('gulp-size');
+var watch        = require('gulp-watch');
 
 var onError = function(error) {
 	console.error(error);
@@ -33,5 +34,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('styles:watch', function () {
-    gulp.watch(config.src.scss + '/**/*.scss', ['styles']);
+	watch(config.src.scss + '/**/*.scss', function() {
+	    gulp.start('styles' );
+	});
 });

@@ -24,6 +24,7 @@
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.4.0",
     "gulp-util": "^3.0.6",
+    "gulp-watch": "^4.3.5",
     "lodash.assign": "^3.2.0",
     "main-bower-files": "^2.9.0",
     "require-dir": "^0.3.0",

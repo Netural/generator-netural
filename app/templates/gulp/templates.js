@@ -4,6 +4,7 @@ var gulpAssemble = require('gulp-assemble');
 var extname = require('gulp-extname');
 var config = require('./config');
 var htmlmin = require('gulp-html-minifier');
+var watch = require('gulp-watch');
 
 gulp.task('templates', function () {
 
@@ -22,6 +23,10 @@ gulp.task('templates', function () {
 });
 
 gulp.task('templates:watch', function () {
-    gulp.watch(config.src.templates + '/**/*.{hbs,yaml,json}', ['templates']);
-    gulp.watch(config.src.data + '/**/*.{hbs,yaml,json}', ['templates']);
+    watch(config.src.templates + '/**/*.{hbs,yaml,json}', function() {
+	    gulp.start('templates' );
+	});
+    watch(config.src.data + '/**/*.{hbs,yaml,json}', function() {
+	    gulp.start('templates' );
+	});
 });
