@@ -1,0 +1,14 @@
+{
+	"layout": "global",
+	"content": {
+		"sections": {
+			"navi": [
+				{
+					"component": "navi-item",
+					"href": "#",
+					"title": "Home"
+				}
+			]
+		}
+	}
+}

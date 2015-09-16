@@ -1,0 +1,5 @@
+<div class="uk-grid{% if tag.style %} {{ tag.style }}{% endif %}">
+	{% for tag in tag.body %}
+		{% include 'components/' ~ tag.component ~ '.twig' with {tag: tag} only %}
+	{% endfor %}
+</div>
