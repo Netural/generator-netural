@@ -9,6 +9,7 @@ var watch = require('gulp-watch');
 var uglify = require('gulp-uglify');
 var gulpif = require('gulp-if');
 var argv = require('yargs').argv;
+var browserSync = require('browser-sync');
 
 var isProduction = (typeof argv.production !== 'undefined') ? true : false;
 

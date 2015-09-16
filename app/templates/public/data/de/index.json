@@ -21,18 +21,18 @@
 												"component": "headline",
 												"type": "h1",
 												"style": "uk-heading-large",
-												"text": "Sample Heading"
+												"text": "Welcome!"
 											},
 											{
 												"component": "paragraph",
 												"style": "uk-text-large",
-												"text": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo."
+												"text": "You have successfully installed your project."
 											},
 											{
 												"component": "link",
-												"href": "#",
-												"iconAfter": "uk-icon-button icon-arrow",
-												"name": "Mehr erfahren"
+												"href": "http://github.com/Netural/generator-netural",
+												"style": "uk-button uk-button-primary uk-margin-top",
+												"name": "Read More"
 											}
 										]
 									}

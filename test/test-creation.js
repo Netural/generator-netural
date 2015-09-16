@@ -52,7 +52,8 @@ describe('netural generator', function () {
         ];
 
         helpers.mockPrompt(this.app, {
-            'projectName': 'test-project'
+            'projectName': 'test-project',
+            'templating': 'Handlebars (clientside)'
         });
         this.app.options['skip-install'] = true;
         this.app.run()
@@ -64,9 +65,9 @@ describe('netural generator', function () {
 });
 
 
-describe('netural generator', function () {
+describe('netural generator php', function () {
     beforeEach(function (done) {
-        helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+        helpers.testDirectory(path.join(__dirname, 'temp-cms'), function (err) {
             if (err) {
                 return done(err);
             }
@@ -100,19 +101,17 @@ describe('netural generator', function () {
             'gulp/templates.js',
             'gulp/images.js',
             'gulpfile.js',
-            'app/styles/main.scss',
-            'app/styles/_variables.scss',
-            'app/styles/util/_mixins.scss',
-            'app/styles/util/_pattern.scss',
-            'app/styles/states/_global.scss',
-            'app/scripts/main.js',
-            'app/templates/layouts/default.hbs',
-            'app/templates/pages/index.hbs'
+            'source/styles/main.scss',
+            'source/styles/_variables.scss',
+            'source/styles/util/_mixins.scss',
+            'source/styles/util/_pattern.scss',
+            'source/styles/states/_global.scss',
+            'source/scripts/main.js'
         ];
 
         helpers.mockPrompt(this.app, {
             'projectName': 'test-project',
-            'cms': 'Content Node'
+            'templating': 'Twig PHP (serverside)'
         });
         this.app.options['skip-install'] = true;
         this.app.run()

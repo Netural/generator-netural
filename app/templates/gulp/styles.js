@@ -12,6 +12,7 @@ var size = require('gulp-size');
 var watch = require('gulp-watch');
 var argv = require('yargs').argv;
 var gulpif = require('gulp-if');
+var browserSync = require('browser-sync');
 
 var onError = function(error) {
     console.error(error);

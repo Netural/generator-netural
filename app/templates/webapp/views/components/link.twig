@@ -6,9 +6,7 @@
 	{% set target = ' target="_blank"'  %}
 {% endif %}
 
-{% set link = '#' %}
-
-<a{{ target|raw }} href="{{ link }}" class="link{% if tag.style %} {{ tag.style }}{% endif %}{% if tag.iconAfter %} link--icon-right{% endif %}{% if tag.iconBefore %} link--icon-left{% endif %}">
+<a{{ target|raw }} href="{{ tag.href }}" class="link{% if tag.style %} {{ tag.style }}{% endif %}{% if tag.iconAfter %} link--icon-right{% endif %}{% if tag.iconBefore %} link--icon-left{% endif %}">
 	{% if tag.iconBefore %}
 		<i class="link__icon icon--before {{ tag.iconBefore }}"{% if tag.iconImage %} style="background-image:url('{{ tag.iconImage }}')"{% endif %}></i>
 	{% endif %}

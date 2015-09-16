@@ -34,10 +34,10 @@ module.exports = generators.Base.extend({
             default: true
         },{
             type: 'list',
-            choices: ["None - templating only", "Content Node"],
-            message: 'For which CMS are you developing?',
-            name: 'cms',
-            default: "None - templating only"
+            choices: ["Twig PHP (serverside)", "Handlebars (clientside)"],
+            message: 'How do you want to template?',
+            name: 'templating',
+            default: "Twig PHP (serverside)"
         },{
             type: 'list',
             choices: ["None", "Bootstrap", "UIKit"],
@@ -55,7 +55,7 @@ module.exports = generators.Base.extend({
             this.projectName = answers.projectName;
             this.projectSlug = _.kebabCase(answers.projectName);
             this.includeNeturalNotice = answers.includeNeturalNotice;
-            this.cms = answers.cms;
+            this.templating = answers.templating;
             this.frontendLibrary = answers.frontendLibrary;
             this.includeMojito = answers.includeMojito;
 
@@ -77,7 +77,7 @@ module.exports = generators.Base.extend({
     setupGulp: function() {
         this.mkdir('gulp');
         this.template('gulp/build.js', 'gulp/build.js');
-this.template('gulp/clean.js', 'gulp/clean.js');
+        this.template('gulp/clean.js', 'gulp/clean.js');
         this.template('gulp/config.json', 'gulp/config.json');
         this.template('gulp/default.js', 'gulp/default.js');
         this.template('gulp/generator.js', 'gulp/generator.js');
@@ -90,11 +90,18 @@ this.template('gulp/clean.js', 'gulp/clean.js');
         this.template('gulp/test.js', 'gulp/test.js');
         this.template('gulp/vendor.js', 'gulp/vendor.js');
         this.template('gulp/watch.js', 'gulp/watch.js');
+
+        if(this.templating === 'Twig PHP (serverside)') {
+            this.template('gulp/php.js', 'gulp/php.js');
+        } else {
+            this.template('gulp/browsersync.js', 'gulp/browsersync.js');
+        }
+
         this.template('gulpfile.js', 'gulpfile.js');
     },
 
     setupProject: function() {
-        if(this.cms === 'Content Node') {
+        if(this.templating === 'Twig PHP (serverside)') {
             this._setupContentNode();
         } else {
             console.log("setupProject");
@@ -104,9 +111,10 @@ this.template('gulp/clean.js', 'gulp/clean.js');
 
     _setupContentNode: function() {
         this.directory('webapp', 'webapp');
-        this.directory('data', 'data');
         this.directory('public', 'public');
         this.copy('composer.json', 'composer.json');
+        this._setupStyles('source');
+        this._setupScripts('source');
     },
 
     _setupTemplateOnly: function() {

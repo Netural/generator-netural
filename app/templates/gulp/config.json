@@ -1,4 +1,23 @@
 {
+    <% if(templating == 'Twig PHP (serverside)') {%>"server": "php",
+    "src": {
+        "images": "source/images",
+        "fonts": "source/fonts",
+        "icons": "source/icons",
+        "scss": "source/styles",
+        "js": "source/scripts",
+        "data": "source/data",
+        "img": "source/images",
+        "bower_components": "bower_components",
+        "generator_templates": "gulp/generator_templates"
+    },
+    "dest": {
+        "css": "public/styles",
+        "js": "public/scripts",
+        "data": "public/data",
+        "images": "public/images",
+        "fonts": "public/fonts"
+    },<% } else { %>"server": "browsersync",
     "src": {
         "images": "app/images",
         "fonts": "app/fonts",
@@ -17,7 +36,7 @@
         "templates": "dist",
         "images": "dist/images",
         "fonts": "dist/fonts"
-    },
+    },<% } %>
     "browsers": [
         "ie >= 8",
         "ie_mob >= 10",
