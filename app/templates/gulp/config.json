@@ -2,18 +2,21 @@
     "src": {
         "images": "app/images",
         "fonts": "app/fonts",
+        "icons": "app/icons",
         "scss": "app/styles",
         "js": "app/scripts",
         "data": "app/data",
         "templates": "app/templates",
         "img": "app/images",
-        "bower_components": "bower_components"
+        "bower_components": "bower_components",
+        "generator_templates": "gulp/generator_templates"
     },
     "dest": {
         "css": "dist/styles",
         "js": "dist/scripts",
         "templates": "dist",
-        "images": "dist/images"
+        "images": "dist/images",
+        "fonts": "dist/fonts"
     },
     "browsers": [
         "ie >= 8",

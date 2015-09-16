@@ -1,40 +1,50 @@
 "use strict";
 
-var gulp         = require('gulp');
-var sass         = require('gulp-sass');
-var sourcemaps   = require('gulp-sourcemaps');
-var util         = require('gulp-util');
-var globbing     = require('gulp-css-globbing');
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
+var util = require('gulp-util');
+var globbing = require('gulp-css-globbing');
 var autoprefixer = require('gulp-autoprefixer');
-var plumber      = require('gulp-plumber');
-var config       = require('./config');
-var size         = require('gulp-size');
-var watch        = require('gulp-watch');
+var plumber = require('gulp-plumber');
+var config = require('./config');
+var size = require('gulp-size');
+var watch = require('gulp-watch');
+var argv = require('yargs').argv;
+var gulpif = require('gulp-if');
 
 var onError = function(error) {
-	console.error(error);
+    console.error(error);
 };
 
-gulp.task('styles', function () {
-  return gulp.src(config.src.scss + '/**/*.{sass,scss}')
-    .pipe(globbing({
-        extensions: ['.scss']
-    }))
-    //.pipe(sourcemaps.init())
-    .pipe(plumber({
-		errorHandler: onError
-	}))
-    .pipe(sass())
-    .pipe(autoprefixer({
-        browsers: config.browsers
-    }))
-    //.pipe(sourcemaps.write())
-    .pipe(gulp.dest(config.dest.css))
-    .pipe(size({title: "styles"}));
+gulp.task('styles', function() {
+
+    var isProduction = (typeof argv.production !== 'undefined') ? true : false;
+
+    return gulp.src(config.src.scss + '/**/*.{sass,scss}')
+        .pipe(plumber(function(error) {
+            util.log(util.colors.red(error.message));
+            this.emit('end');
+        }))
+        .pipe(globbing({
+            extensions: ['.scss']
+        }))
+        .pipe(gulpif(!isProduction, sourcemaps.init()))
+        .pipe(sass({
+            outputStyle: isProduction ? 'compressed' : 'expanded'
+        }))
+        .pipe(autoprefixer({
+            browsers: config.browsers
+        }))
+        .pipe(gulpif(!isProduction, sourcemaps.write()))
+        .pipe(gulp.dest(config.dest.css))
+        .pipe(size({
+            title: "styles"
+        }));
 });
 
-gulp.task('styles:watch', function () {
-	watch(config.src.scss + '/**/*.scss', function() {
-	    gulp.start('styles' );
-	});
+gulp.task('styles:watch', function() {
+    watch(config.src.scss + '/**/*.scss', function() {
+        gulp.start('styles');
+    });
 });

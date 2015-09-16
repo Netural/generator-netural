@@ -76,18 +76,20 @@ module.exports = generators.Base.extend({
 
     setupGulp: function() {
         this.mkdir('gulp');
+        this.template('gulp/build.js', 'gulp/build.js');
+this.template('gulp/clean.js', 'gulp/clean.js');
         this.template('gulp/config.json', 'gulp/config.json');
         this.template('gulp/default.js', 'gulp/default.js');
-        this.template('gulp/clean.js', 'gulp/clean.js');
-        this.template('gulp/build.js', 'gulp/build.js');
-        this.template('gulp/watch.js', 'gulp/watch.js');
-        this.template('gulp/test.js', 'gulp/test.js');
-        this.template('gulp/styles.js', 'gulp/styles.js');
-        this.template('gulp/scripts.js', 'gulp/scripts.js');
-        this.template('gulp/vendor.js', 'gulp/vendor.js');
-        this.template('gulp/serve.js', 'gulp/serve.js');
-        this.template('gulp/templates.js', 'gulp/templates.js');
+        this.template('gulp/generator.js', 'gulp/generator.js');
+        this.template('gulp/icons.js', 'gulp/icons.js');
         this.template('gulp/images.js', 'gulp/images.js');
+        this.template('gulp/scripts.js', 'gulp/scripts.js');
+        this.template('gulp/serve.js', 'gulp/serv.js');
+        this.template('gulp/styles.js', 'gulp/styles.js');
+        this.template('gulp/templates.js', 'gulp/templates.js');
+        this.template('gulp/test.js', 'gulp/test.js');
+        this.template('gulp/vendor.js', 'gulp/vendor.js');
+        this.template('gulp/watch.js', 'gulp/watch.js');
         this.template('gulpfile.js', 'gulpfile.js');
     },
 
@@ -127,7 +129,7 @@ module.exports = generators.Base.extend({
         this.mkdir(appDir+'/styles');
         this.mkdir(appDir+'/styles/base');
         this.mkdir(appDir+'/styles/layout');
-        this.mkdir(appDir+'/styles/modules');
+        this.mkdir(appDir+'/styles/components');
         this.mkdir(appDir+'/styles/states');
         this.mkdir(appDir+'/styles/util');
 
@@ -149,8 +151,11 @@ module.exports = generators.Base.extend({
 
         if(this.includeMojito) {
             this.mkdir(appDir+'/scripts/controllers');
+            this.template('mojitoSetup.js', appDir+'/scripts/mojitoSetup.js');
         }
-
+        if(this.includeNeturalNotice) {
+            this.copy('companyNotice.js', appDir+'/scripts/companyNotice.js');
+        }
         this.copy('main.js', appDir+'/scripts/main.js');
     }
 
