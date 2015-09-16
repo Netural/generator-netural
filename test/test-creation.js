@@ -3,95 +3,64 @@
 
 var path    = require('path');
 var helpers = require('yeoman-generator').test;
+var assert  = require('yeoman-generator').assert;
 
+var before = function (done) {
+    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
+        if (err) {
+            return done(err);
+        }
+
+        this.app = helpers.createGenerator('netural:app', [
+            '../../app'
+        ]);
+        done();
+    }.bind(this));
+}
 
 describe('netural generator', function () {
-    beforeEach(function (done) {
-        helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-            if (err) {
-                return done(err);
-            }
-
-            this.app = helpers.createGenerator('netural:app', [
-                '../../app'
-            ]);
-            done();
-        }.bind(this));
-    });
+    beforeEach(before);
 
     it('creates expected files', function (done) {
         var expected = [
-            'package.json',
             'bower.json',
+            'package.json',
             '.editorconfig',
             '.jshintrc',
-            '.bowerrc',
+            '.jscsrc',
             '.gitignore',
-            'Gruntfile.js',
-            'app/scripts/main.js',
+            'README.md',
+            'gulp/config.json',
+            'gulp/default.js',
+            'gulp/clean.js',
+            'gulp/build.js',
+            'gulp/watch.js',
+            'gulp/test.js',
+            'gulp/styles.js',
+            'gulp/scripts.js',
+            'gulp/vendor.js',
+            'gulp/serve.js',
+            'gulp/templates.js',
+            'gulp/images.js',
+            'gulpfile.js',
             'app/styles/main.scss',
-            'app/templates/layouts/layout.hbs',
-            'app/templates/pages/index.hbs',
-            'app/templates/partials/scripts.hbs'
+            'app/styles/_variables.scss',
+            'app/styles/util/_mixins.scss',
+            'app/styles/util/_pattern.scss',
+            'app/styles/states/_global.scss',
+            'app/scripts/main.js',
+            'app/templates/layouts/default.hbs',
+            'app/templates/pages/index.hbs'
         ];
 
         helpers.mockPrompt(this.app, {
             'projectName': 'test-project'
         });
         this.app.options['skip-install'] = true;
-        this.app.run({}, function () {
-            helpers.assertFile(expected);
-            done();
-        });
-    });
-});
-
-
-
-describe('netural generator - not for netural', function () {
-    beforeEach(function (done) {
-        helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-            if (err) {
-                return done(err);
-            }
-
-            this.app = helpers.createGenerator('netural:app', [
-                '../../app'
-            ]);
-            done();
-        }.bind(this));
-    });
-
-    it('creates expected files', function (done) {
-        var expected = [
-            'package.json',
-            'bower.json',
-            '.editorconfig',
-            '.jshintrc',
-            '.bowerrc',
-            '.gitignore',
-            'Gruntfile.js',
-            'app/scripts/main.js',
-            'app/styles/main.scss',
-            'app/templates/layouts/layout.hbs',
-            'app/templates/pages/index.hbs',
-            'app/templates/partials/scripts.hbs'
-        ];
-
-        helpers.mockPrompt(this.app, {
-            'projectName': 'test-project',
-            'includeAutoprefixer': false,
-            'includeNeturalNotice': false
-        });
-        this.app.options['skip-install'] = true;
-        this.app.run({}, function () {
-            helpers.assertFile(expected);
-            helpers.assertNoFileContent([
-                ['app/scripts/main.js',/\w\w/],
-                ['package.json',/autoprefixer/],
-                ['Gruntfile.js',/autoprefixer/]
-            ]);
-            done();
+        this.app.run()
+            .on('end', function () {
+                assert.file(expected);
+                done();
         });
     });
 });
