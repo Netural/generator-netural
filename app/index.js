@@ -103,7 +103,10 @@ this.template('gulp/clean.js', 'gulp/clean.js');
     },
 
     _setupContentNode: function() {
-
+        this.directory('webapp', 'webapp');
+        this.directory('data', 'data');
+        this.directory('public', 'public');
+        this.copy('composer.json', 'composer.json');
     },
 
     _setupTemplateOnly: function() {

@@ -1,0 +1,12 @@
+{% extends "index.twig" %}
+
+{% block content %}
+
+{% for key, section in content.sections %}
+	<!-- {{ key }} -->
+	{% if section.component %}
+		{% include 'components/' ~ section.component ~ '.twig' with {tag: section} only %}
+	{% endif %}
+{% endfor %}
+
+{% endblock %}

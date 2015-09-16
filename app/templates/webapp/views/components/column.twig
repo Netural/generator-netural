@@ -1,0 +1,14 @@
+{% if tag.style is empty %}
+	{% set style = 'uk-width-1-1' %}
+{% else %}
+	{% set style = tag.style %}
+{% endif %}
+<div class="{{ style }}">
+	{% if tag.body %}
+		{% for tag in tag.body %}
+			{% include 'components/' ~ tag.component ~ '.twig' with {tag: tag} only %}
+		{% endfor %}
+	{% else %}
+		&nbsp;
+	{% endif %}
+</div>

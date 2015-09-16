@@ -1,0 +1,15 @@
+<div class="box">
+	{% if tag.isCentered %}
+		<div class="uk-vertical-align uk-text-center" style="height: 450px;">
+		    <div class="uk-vertical-align-middle uk-width-1-2">
+	{% endif %}
+
+		{% for tag in tag.body %}
+			{% include 'components/' ~ tag.component ~ '.twig' with {tag: tag} only %}
+		{% endfor %}
+
+	{% if tag.isCentered %}
+			</div>
+		</div>
+	{% endif %}
+</div>

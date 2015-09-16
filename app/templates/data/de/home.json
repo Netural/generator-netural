@@ -1,0 +1,47 @@
+{
+	"title" : "Home",
+	"content": {
+		"sections": [
+			{
+				"component": "section",
+				"isCentered": true,
+				"body": [
+					{
+						"component": "grid",
+						"body": {
+							"column1": {
+								"component": "column",
+								"style": "uk-width-medium-1-1",
+								"body": [
+									{
+										"component": "box",
+										"isCentered": true,
+										"body": [
+											{
+												"component": "headline",
+												"type": "h1",
+												"style": "uk-heading-large",
+												"text": "Sample Heading"
+											},
+											{
+												"component": "paragraph",
+												"style": "uk-text-large",
+												"text": "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo."
+											},
+											{
+												"component": "link",
+												"href": "#",
+												"iconAfter": "uk-icon-button icon-arrow",
+												"name": "Mehr erfahren"
+											}
+										]
+									}
+								]
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}

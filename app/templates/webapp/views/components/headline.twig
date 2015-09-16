@@ -1,0 +1,15 @@
+<{{ tag.type|default('h1') }}{% if tag.style %} class="{{ tag.style }}"{% endif %}>
+	{% if tag.href %}
+		<a href="{{ url(tag.href) }}">
+	{% endif %}
+
+	{{ tag.text|raw }}
+
+	{% if tag.arrow %}
+		<span class="circle-btn"><span><i class="uk-icon-chevron-right"></i></span></span>
+	{% endif %}
+
+	{% if tag.href %}
+		</a>
+	{% endif %}
+</{{ tag.type|default('h1') }}>

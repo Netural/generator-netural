@@ -1,0 +1,23 @@
+{% set target = '' %}
+{% if tag.target == 'lightbox' %}
+	{% set target = ' data-uk-lightbox data-lightbox-type="iframe"'  %}
+{% endif %}
+{% if tag.target == 'newWindow' %}
+	{% set target = ' target="_blank"'  %}
+{% endif %}
+
+{% set link = '#' %}
+
+<a{{ target|raw }} href="{{ link }}" class="link{% if tag.style %} {{ tag.style }}{% endif %}{% if tag.iconAfter %} link--icon-right{% endif %}{% if tag.iconBefore %} link--icon-left{% endif %}">
+	{% if tag.iconBefore %}
+		<i class="link__icon icon--before {{ tag.iconBefore }}"{% if tag.iconImage %} style="background-image:url('{{ tag.iconImage }}')"{% endif %}></i>
+	{% endif %}
+
+	{% if tag.name or tag.information %}
+		<span class="link__label"><span>{{ tag.name|raw }}{% if tag.information %} <span class="link__info">{{ tag.information }}</span>{% endif %}</span></span>
+	{% endif %}
+
+	{% if tag.iconAfter %}
+		<i class="link__icon {{ tag.iconAfter }}"></i>
+	{% endif %}
+</a>
