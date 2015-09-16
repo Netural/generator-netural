@@ -1,9 +1,29 @@
 {
-    "tasks": "gulp",
     "src": {
-        "scss": "app/styles"
+        "images": "app/images",
+        "fonts": "app/fonts",
+        "scss": "app/styles",
+        "js": "app/scripts",
+        "data": "app/data",
+        "templates": "app/templates",
+        "img": "app/images",
+        "bower_components": "bower_components"
     },
     "dest": {
-        "css": "dist/styles.css"
-    }
+        "css": "dist/styles",
+        "js": "dist/scripts",
+        "templates": "dist",
+        "images": "dist/images"
+    },
+    "browsers": [
+        "ie >= 8",
+        "ie_mob >= 10",
+        "ff >= 30",
+        "chrome >= 34",
+        "safari >= 7",
+        "opera >= 23",
+        "ios >= 7",
+        "android >= 4.4",
+        "bb >= 1"
+    ]
 }

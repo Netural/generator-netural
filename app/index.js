@@ -71,18 +71,24 @@ module.exports = generators.Base.extend({
         this.copy('jshintrc', '.jshintrc');
         this.copy('jscsrc', '.jscsrc');
         this.copy('gitignore', '.gitignore');
+        this.copy('readme.md', 'README.md');
     },
 
     setupGulp: function() {
         this.mkdir('gulp');
         this.template('gulp/config.json', 'gulp/config.json');
-        this.copy('gulp/default.js', 'gulp/default.js');
-        this.copy('gulp/clean.js', 'gulp/clean.js');
-        this.copy('gulp/build.js', 'gulp/build.js');
-        this.copy('gulp/watch.js', 'gulp/watch.js');
-        this.copy('gulp/test.js', 'gulp/test.js');
-        this.copy('gulp/styles.js', 'gulp/styles.js');
-        this.copy('gulpfile.js', 'gulpfile.js');
+        this.template('gulp/default.js', 'gulp/default.js');
+        this.template('gulp/clean.js', 'gulp/clean.js');
+        this.template('gulp/build.js', 'gulp/build.js');
+        this.template('gulp/watch.js', 'gulp/watch.js');
+        this.template('gulp/test.js', 'gulp/test.js');
+        this.template('gulp/styles.js', 'gulp/styles.js');
+        this.template('gulp/scripts.js', 'gulp/scripts.js');
+        this.template('gulp/vendor.js', 'gulp/vendor.js');
+        this.template('gulp/serve.js', 'gulp/serve.js');
+        this.template('gulp/templates.js', 'gulp/templates.js');
+        this.template('gulp/images.js', 'gulp/images.js');
+        this.template('gulpfile.js', 'gulpfile.js');
     },
 
     setupProject: function() {
@@ -102,7 +108,6 @@ module.exports = generators.Base.extend({
     },
 
     _setupTemplateOnly: function() {
-        console.log("_setupTemplateOnly");
         this.mkdir('app');
         this.mkdir('app/images');
         this.mkdir('app/fonts');
@@ -113,38 +118,43 @@ module.exports = generators.Base.extend({
         this.mkdir('app/templates/components');
         this._setupStyles('app');
         this._setupScripts('app');
+        this.template('default.hbs', 'app/templates/layouts/default.hbs');
+        this.template('index.hbs', 'app/templates/pages/index.hbs');
     },
 
     _setupStyles: function(dir) {
-        var stylesDir = 'app'
+        var appDir = 'app'
         if(typeof dir === 'string') {
-            stylesDir = dir;
+            appDir = dir;
         }
-        this.mkdir(stylesDir+'/styles');
-        this.mkdir(stylesDir+'/styles/base');
-        this.mkdir(stylesDir+'/styles/layout');
-        this.mkdir(stylesDir+'/styles/modules');
-        this.mkdir(stylesDir+'/styles/states');
-        this.mkdir(stylesDir+'/styles/util');
+        this.mkdir(appDir+'/styles');
+        this.mkdir(appDir+'/styles/base');
+        this.mkdir(appDir+'/styles/layout');
+        this.mkdir(appDir+'/styles/modules');
+        this.mkdir(appDir+'/styles/states');
+        this.mkdir(appDir+'/styles/util');
 
-        this.copy('styles.scss', stylesDir+'/styles/styles.scss');
-        this.copy('mixins.scss', stylesDir+'/styles/util/mixins.scss');
-        this.copy('pattern.scss', stylesDir+'/styles/util/pattern.scss');
+        this.copy('main.scss', appDir+'/styles/main.scss');
+        this.copy('variables.scss', appDir+'/styles/_variables.scss');
+        this.copy('mixins.scss', appDir+'/styles/util/_mixins.scss');
+        this.copy('pattern.scss', appDir+'/styles/util/_pattern.scss');
         if(this.frontendLibrary === 'None') {
-            this.copy('states.scss', stylesDir+'/styles/states/global.scss');
+            this.copy('states.scss', appDir+'/styles/states/_global.scss');
         }
     },
 
     _setupScripts: function(dir) {
-        var stylesDir = 'app'
+        var appDir = 'app'
         if(typeof dir === 'string') {
-            stylesDir = dir;
+            appDir = dir;
         }
-        this.mkdir(stylesDir+'/scripts');
+        this.mkdir(appDir+'/scripts');
 
         if(this.includeMojito) {
-            this.mkdir(stylesDir+'/scripts/controllers');
+            this.mkdir(appDir+'/scripts/controllers');
         }
+
+        this.copy('main.js', appDir+'/scripts/main.js');
     }
 
 });

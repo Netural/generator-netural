@@ -5,8 +5,17 @@
     "modernizr": "~2.8.3",
     "jquery": "~2.1.4",<% if(includeMojito) {%>
     "mojito": "thomaspink/mojito.js",<% } %><% if(frontendLibrary == "UIKit") {%>
-    "uikit": "^2.21.0",<% } %>
+    "uikit": "^2.21.0",<% } %><% if(frontendLibrary == "Bootstrap") {%>
+    "bootstrap-sass": "^3.3.5",<% } %>
     "normalize-scss": "~2.1.2"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "overrides": {
+    "modernizr": {
+        "ignore": true
+    },
+    "normalize-scss": {
+        "ignore": true
+    }
+  }
 }

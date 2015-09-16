@@ -1,0 +1,20 @@
+@import 'variables.scss';
+
+// UTIL
+@import 'util/*';
+
+// BASE
+@import '../../bower_components/normalize-scss/normalize';<% if(frontendLibrary == "UIKit") {%>
+@import '../../bower_components/uikit/scss/uikit-mixins';
+@import '../../bower_components/uikit/scss/uikit';<% } %><% if(frontendLibrary == "Bootstrap") {%>
+@import '../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';<% } %>
+@import 'base/*';
+
+// COMPONENTS
+@import 'layout/*';
+
+// COMPONENTS
+@import 'components/*';
+
+// STATES
+@import 'states/*';

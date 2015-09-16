@@ -5,3 +5,4 @@ dist
 *.sublime-project
 *.sublime-workspace
 .idea
+.DS_Store
