@@ -148,6 +148,9 @@ module.exports = generators.Base.extend({
         this.copy('variables.scss', appDir+'/styles/_variables.scss');
         this.copy('mixins.scss', appDir+'/styles/util/_mixins.scss');
         this.copy('pattern.scss', appDir+'/styles/util/_pattern.scss');
+        this.copy('general.scss', appDir+'/styles/base/_general.scss');
+        this.copy('mycomponent.scss', appDir+'/styles/components/_mycomponent.scss');
+        this.copy('baselayout.scss', appDir+'/styles/layout/_base.scss');
         if(this.frontendLibrary === 'None') {
             this.copy('states.scss', appDir+'/styles/states/_global.scss');
         }
