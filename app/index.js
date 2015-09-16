@@ -84,7 +84,7 @@ this.template('gulp/clean.js', 'gulp/clean.js');
         this.template('gulp/icons.js', 'gulp/icons.js');
         this.template('gulp/images.js', 'gulp/images.js');
         this.template('gulp/scripts.js', 'gulp/scripts.js');
-        this.template('gulp/serve.js', 'gulp/serv.js');
+        this.template('gulp/serve.js', 'gulp/serve.js');
         this.template('gulp/styles.js', 'gulp/styles.js');
         this.template('gulp/templates.js', 'gulp/templates.js');
         this.template('gulp/test.js', 'gulp/test.js');
