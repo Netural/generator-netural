@@ -6,3 +6,4 @@ dist
 *.sublime-workspace
 .idea
 .DS_Store
+test/temp-cms
