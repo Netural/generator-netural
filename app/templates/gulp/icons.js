@@ -2,8 +2,6 @@ var gulp        = require('gulp');
 var iconfont    = require('gulp-iconfont');
 var consolidate = require("gulp-consolidate");
 var config      = require('./config');
-var watch       = require('gulp-watch');
-var browserSync = require('browser-sync');
 
 gulp.task('icons', ['styles'], function () {
     return gulp.src([config.src.icons + '/**/*.svg'])
@@ -28,7 +26,7 @@ gulp.task('icons', ['styles'], function () {
 });
 
 gulp.task('icons:watch', function () {
-    watch(config.src.icons + '/**/*.svg', function() {
+    gulp.watch(config.src.icons + '/**/*.svg', function() {
 	    gulp.start('icons');
 	});
 });

@@ -4,12 +4,10 @@ var gulpAssemble = require('gulp-assemble');
 var extname = require('gulp-extname');
 var config = require('./config');
 var htmlmin = require('gulp-html-minifier');
-var watch = require('gulp-watch');
 var plumber = require('gulp-plumber');
 var util = require('gulp-util');
 var gulpif = require('gulp-if');
 var argv = require('yargs').argv;
-var browserSync = require('browser-sync');
 
 gulp.task('templates', function() {
 
@@ -41,10 +39,6 @@ gulp.task('templates', function() {
 });
 
 gulp.task('templates:watch', function() {
-    watch(config.src.templates + '/**/*.{hbs,yaml,json}', function() {
-        gulp.start('templates');
-    });
-    watch(config.src.data + '/**/*.{hbs,yaml,json}', function() {
-        gulp.start('templates');
-    });
+    gulp.watch(config.src.templates + '/**/*.{hbs,yaml,json}', ['templates']);
+    gulp.watch(config.src.data + '/**/*.{hbs,yaml,json}', ['templates']);
 });

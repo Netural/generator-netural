@@ -6,8 +6,6 @@ var cache = require('gulp-cache');
 var size = require('gulp-size');
 var config = require('./config');
 var del = require('del');
-var watch = require('gulp-watch');
-var browserSync = require('browser-sync');
 
 gulp.task('images', function() {
     del.sync([config.dest.images]);

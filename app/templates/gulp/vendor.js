@@ -5,11 +5,9 @@ var mainBowerFiles = require('gulp-main-bower-files');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var config = require('./config');
-var watch = require('gulp-watch');
 var uglify = require('gulp-uglify');
 var gulpif = require('gulp-if');
 var argv = require('yargs').argv;
-var browserSync = require('browser-sync');
 
 var isProduction = (typeof argv.production !== 'undefined') ? true : false;
 
@@ -37,9 +35,7 @@ gulp.task('bower', function() {
 
 
 gulp.task('bower:watch', function() {
-    watch('bower.json', function() {
-        gulp.start('bower');
-    });
+    gulp.watch('bower.json', ['bower']);
 });
 
 gulp.task('vendor', ['modernizr', 'bower']);
