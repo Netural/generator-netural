@@ -6,7 +6,6 @@ var cache = require('gulp-cache');
 var size = require('gulp-size');
 var config = require('./config');
 var del = require('del');
-var watch = require('gulp-watch');
 
 gulp.task('images', function() {
     del.sync([config.dest.images]);
@@ -22,7 +21,5 @@ gulp.task('images', function() {
 });
 
 gulp.task('images:watch', function() {
-    watch(config.src.images + '/**/*', function() {
-        gulp.start('images');
-    });
+    gulp.watch(config.src.images + '/**/*', ['images']);
 });

@@ -1,7 +1,7 @@
 "use strict";
 
-var gulp = require('gulp');
 var config = require('./config');
+var gulp = require('gulp');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var assign = require('lodash.assign');
@@ -9,7 +9,6 @@ var babelify = require('babelify');
 var util = require('gulp-util');
 var watchify = require('watchify');
 var size = require('gulp-size');
-var watch = require('gulp-watch');
 var uglify = require('gulp-uglify');
 var argv = require('yargs').argv;
 var rename = require("gulp-rename");
@@ -19,20 +18,20 @@ var browserifyTask = function(devMode) {
     var bundle = browserify({
         debug: isProduction ? false : true,
         extensions: ['.js', '.jsx'],
-        entries: config.src.js + '/main.js'
+        entries: config.src.js + '/main.js',
+        transform: 'babelify'
     });
-    if (devMode) {
+    if(devMode) {
         bundle = watchify(bundle);
+        bundle.on('update', function(){
+            executeBundle(bundle);
+        });
     }
-    /*bundle.on('update', function(){
-        executeBundle(bundle);
-    });*/
-    executeBundle(bundle);
+    return executeBundle(bundle);
 };
 
 function executeBundle(bundle) {
-    bundle
-        .transform(babelify)
+    return bundle
         .bundle()
         .on("error", function(error) {
             util.log(util.colors.red(error.message));
@@ -67,21 +66,11 @@ gulp.task('uglify', ['bundle'], function() {
 });
 
 gulp.task('bundle', function() {
-    return browserifyTask();
+    return browserifyTask(false);
 });
 
-gulp.task('scripts', function() {
-    var isProduction = (typeof argv.production !== 'undefined') ? true : false;
-    if (isProduction) {
-        gulp.start('uglify');
-    } else {
-        gulp.start('bundle');
-    }
-
-});
+gulp.task('scripts', ['uglify']);
 
 gulp.task('scripts:watch', function() {
-    watch(config.src.js + '/**/*.js', function() {
-        gulp.start('scripts');
-    });
+    return browserifyTask(true);
 });
