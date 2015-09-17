@@ -9,7 +9,6 @@ var autoprefixer = require('gulp-autoprefixer');
 var plumber = require('gulp-plumber');
 var config = require('./config');
 var size = require('gulp-size');
-var watch = require('gulp-watch');
 var argv = require('yargs').argv;
 var gulpif = require('gulp-if');
 var browserSync = require('browser-sync');
@@ -44,8 +43,6 @@ gulp.task('styles', function() {
         }));
 });
 
-gulp.task('styles:watch', function() {
-    watch(config.src.scss + '/**/*.scss', function() {
-        gulp.start('styles');
-    });
+gulp.task('styles:watch', ['styles'],  function() {
+    gulp.watch(config.src.scss + '/**/*.scss', ['styles']);
 });

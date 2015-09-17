@@ -23,7 +23,5 @@ gulp.task('images', function() {
 });
 
 gulp.task('images:watch', function() {
-    watch(config.src.images + '/**/*', function() {
-        gulp.start('images');
-    });
+    gulp.watch(config.src.images + '/**/*', ['images']);
 });
