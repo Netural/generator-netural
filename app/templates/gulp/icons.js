@@ -3,6 +3,7 @@ var iconfont    = require('gulp-iconfont');
 var consolidate = require("gulp-consolidate");
 var config      = require('./config');
 var watch       = require('gulp-watch');
+var browserSync = require('browser-sync');
 
 gulp.task('icons', ['styles'], function () {
     return gulp.src([config.src.icons + '/**/*.svg'])

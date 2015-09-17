@@ -1,8 +1,8 @@
-<section data-uk-section="{darkenColor: '#999'}"{% if tag.style %} class="{{ tag.style }}"{% endif %}>
+<section{% if tag.style %} class="{{ tag.style }}"{% endif %}>
 	{% if tag.isCentered %}
 		<div class="uk-container uk-container-center">
 	{% endif %}
-		
+
 		{% for tag in tag.body %}
 			{% include 'components/' ~ tag.component ~ '.twig' with {tag: tag} only %}
 		{% endfor %}

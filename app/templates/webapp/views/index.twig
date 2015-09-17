@@ -1,35 +1,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		
+
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.21.0/css/uikit.min.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.21.0/css/components/tooltip.almost-flat.min.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.21.0/css/components/form-advanced.min.css" />
 		<title>Demo</title>
-		
+
 	</head>
 	<body>
 		<div id="content">
-			
+
 			<div class="uk-container uk-container-center uk-margin-large-top uk-margin-large-bottom">
 				<nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
 					<a href="/" class="uk-navbar-brand">Demo</a>
-					<ul class="uk-navbar-nav">
-						<li>
-							<a href="/">
-								Addresses
-							</a>
-						</li>
-					</ul>
-
-					<button class="uk-button" data-uk-tooltip title="Hello">Tooltip</button>
 				</nav>
 			</div>
-			
+
 		</div>
 
 		{% block content %}{% endblock %}
-		
-		<script type="text/javascript" src="/public/js/app.js"></script>
+
+		<script type="text/javascript" src="/scripts/main.js"></script>
 	</body>
 </html>

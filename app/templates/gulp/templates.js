@@ -9,6 +9,7 @@ var plumber = require('gulp-plumber');
 var util = require('gulp-util');
 var gulpif = require('gulp-if');
 var argv = require('yargs').argv;
+var browserSync = require('browser-sync');
 
 gulp.task('templates', function() {
 

@@ -12,6 +12,7 @@ var size = require('gulp-size');
 var uglify = require('gulp-uglify');
 var argv = require('yargs').argv;
 var rename = require("gulp-rename");
+var browserSync = require('browser-sync');
 
 var browserifyTask = function(devMode) {
     var isProduction = (typeof argv.production !== 'undefined') ? true : false;
