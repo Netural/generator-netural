@@ -43,6 +43,11 @@ gulp.task('styles', function() {
         }));
 });
 
-gulp.task('styles:watch', ['styles'],  function() {
-    gulp.watch(config.src.scss + '/**/*.scss', ['styles']);
+gulp.task('styles:browsersync', ['styles'], function () {
+    browserSync.reload();
 });
+
+gulp.task('styles:watch', function () {
+    gulp.watch(config.src.scss + '/**/*.scss', ['styles:browsersync']);
+});
+
