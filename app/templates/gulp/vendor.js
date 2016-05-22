@@ -8,6 +8,7 @@ var config = require('./config');
 var uglify = require('gulp-uglify');
 var gulpif = require('gulp-if');
 var argv = require('yargs').argv;
+var fs = require('fs');
 
 var isProduction = (typeof argv.production !== 'undefined') ? true : false;
 
@@ -17,10 +18,9 @@ gulp.task('modernizr', function() {
         .pipe(gulp.dest(config.dest.js + '/vendor'))
 });
 
-
 gulp.task('bower', function() {
-
-    return gulp.src('bower.json')
+    if (fs.existsSync('bower_components')) {
+        return gulp.src('bower.json')
         .pipe(mainBowerFiles(['**/*.js'], {
             paths: {
                 bowerDirectory: config.src.bower_components,
@@ -30,9 +30,11 @@ gulp.task('bower', function() {
         .pipe(concat('vendor.js'))
         .pipe(gulpif(isProduction, uglify()))
         .pipe(gulp.dest(config.dest.js + '/vendor'));
+    } else {
+        console.log('Bower_Components Folder doesn\'t exist');
+        return false;
+    }
 });
-
-
 
 gulp.task('bower:watch', function() {
     gulp.watch('bower.json', ['bower']);
