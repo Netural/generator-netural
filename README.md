@@ -1,4 +1,4 @@
-# generator-netural [![Build Status](https://secure.travis-ci.org/ddprrt/generator-netural.png?branch=master)](https://travis-ci.org/ddprrt/generator-netural)
+# generator-netural [![Build Status](https://travis-ci.org/Netural/generator-netural.svg?branch=master)](https://travis-ci.org/Netural/generator-netural)
 
 A generator for [Yeoman](http://yeoman.io), for [Netural](http://netural.com) front-end projects.
 
