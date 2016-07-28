@@ -16,12 +16,18 @@ var browserSync = require('browser-sync');
 
 var browserifyTask = function(devMode) {
     var isProduction = (typeof argv.production !== 'undefined') ? true : false;
-    var bundle = browserify({
+    var opts = {
         debug: isProduction ? false : true,
         extensions: ['.js', '.jsx'],
         entries: config.src.js + '/main.js',
         transform: 'babelify'
-    });
+    };
+    
+    if(devMode) {
+      opts = assign({}, watchify.args, opts);
+    }
+    
+    var bundle = browserify(opts);
     if(devMode) {
         bundle = watchify(bundle);
         bundle.on('update', function(){
